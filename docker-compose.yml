@@ -2,7 +2,6 @@ name: 1riel_services
 
 services:
 
-
   #################### PRODUCT SERVICE ####################
 
   # MongoDB Product Service
@@ -48,6 +47,7 @@ services:
 
 
   #################### STAGE SERVICES ####################
+
 
   # # MongoDB Stage Service
   # mongo_stage:
