@@ -14,12 +14,12 @@ from datetime import datetime
 from bson import ObjectId, json_util
 
 from Environment import *
-from server.utilities.Database import MongoDB
+from server.utilities.Database import Mongo_DB
 from server.utilities.Debug import debug
 
 router = APIRouter()
 oa = OAuth2PasswordBearer(tokenUrl="token")
-db = MongoDB()
+db = Mongo_DB()
 
 
 @router.post("/create", deprecated=0)

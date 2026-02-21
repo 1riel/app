@@ -21,7 +21,7 @@ from pprint import pprint
 
 from Environment import *
 from server.utilities.Security import HASH
-from server.utilities.Database import MongoDB
+from server.utilities.Database import Mongo_DB
 from server.utilities.Storage import Storage
 from server.utilities.Token import Token
 from server.utilities.Debug import *
@@ -33,7 +33,7 @@ image_path = "assets/credential"
 
 oa = OAuth2PasswordBearer(tokenUrl="credential/signin")
 se = HASH(SECRET_KEY)
-db = MongoDB()
+db = Mongo_DB()
 s3 = Storage()
 tk = Token()
 
