@@ -49,46 +49,46 @@ services:
 
   #################### STAGE SERVICES ####################
 
-  # MongoDB Stage Service
-  mongo_stage:
-    build:
-      context: .
-      dockerfile: server/services/mongo/Dockerfile
-    restart: unless-stopped
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=adminadmin
-    ports:
-      - "27027:27017"
-    volumes:
-      - /mnt/storage/mongo_stage:/data
-      - /mnt/storage/mongo_stage/var/log/mongodb:/var/log/mongodb
-      - /mnt/storage/mongo_stage/etc/mongod.conf:/etc/mongod.conf
+  # # MongoDB Stage Service
+  # mongo_stage:
+  #   build:
+  #     context: .
+  #     dockerfile: server/services/mongo/Dockerfile
+  #   restart: unless-stopped
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=admin
+  #     - MONGO_INITDB_ROOT_PASSWORD=adminadmin
+  #   ports:
+  #     - "27027:27017"
+  #   volumes:
+  #     - /mnt/storage/mongo_stage:/data
+  #     - /mnt/storage/mongo_stage/var/log/mongodb:/var/log/mongodb
+  #     - /mnt/storage/mongo_stage/etc/mongod.conf:/etc/mongod.conf
   
   
-  # MinIO Stage Service
-  minio_stage:
-    build:
-      context: .
-      dockerfile: server/services/minio/Dockerfile
-    restart: unless-stopped
-    environment:
-      - MINIO_ROOT_USER=admin
-      - MINIO_ROOT_PASSWORD=adminadmin
-    ports:
-      - "9900:9000"
-      - "9901:9001"
-    volumes:
-      - /mnt/storage/minio_stage/data:/data
-      - /mnt/storage/minio_stage/var/log/minio:/var/log/minio
+  # # MinIO Stage Service
+  # minio_stage:
+  #   build:
+  #     context: .
+  #     dockerfile: server/services/minio/Dockerfile
+  #   restart: unless-stopped
+  #   environment:
+  #     - MINIO_ROOT_USER=admin
+  #     - MINIO_ROOT_PASSWORD=adminadmin
+  #   ports:
+  #     - "9900:9000"
+  #     - "9901:9001"
+  #   volumes:
+  #     - /mnt/storage/minio_stage/data:/data
+  #     - /mnt/storage/minio_stage/var/log/minio:/var/log/minio
 
   
-  # Telegram Bot Stage Service
-  telegram_stage:
-    build:
-      context: .
-      dockerfile: server/services/telegram_bot/Dockerfile
-    restart: unless-stopped
-    environment:
-      - BOT_TOKEN=8209910932:AAEYZtLY8sk_X8kfILfyfGeT_Lyaz5Z9hM4
+  # # Telegram Bot Stage Service
+  # telegram_stage:
+  #   build:
+  #     context: .
+  #     dockerfile: server/services/telegram_bot/Dockerfile
+  #   restart: unless-stopped
+  #   environment:
+  #     - BOT_TOKEN=8209910932:AAEYZtLY8sk_X8kfILfyfGeT_Lyaz5Z9hM4
 
