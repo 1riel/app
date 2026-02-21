@@ -63,16 +63,15 @@ systemctl start ${SERVICE_NAME}.service
 # systemctl status ${SERVICE_NAME}.service
 
 # ?[OPTIONAL] stop service
-# SERVICE_NAME=1riel_application
-# systemctl stop ${SERVICE_NAME}.service
-# systemctl disable ${SERVICE_NAME}.service
-
-
+SERVICE_NAME=1riel_telegram
+systemctl stop ${SERVICE_NAME}.service
+systemctl disable ${SERVICE_NAME}.service
 # ?[OPTIONAL] remove service
-# SERVICE_NAME=1riel_application
-# rm -rf /etc/systemd/system/${SERVICE_NAME}.service
-# systemctl daemon-reload
+rm -rf /etc/systemd/system/${SERVICE_NAME}.service
+systemctl daemon-reload
 
 
 
 
+# check port 8000
+netstat -tuln | grep 8000
