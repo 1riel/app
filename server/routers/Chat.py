@@ -77,4 +77,4 @@ async def _(
 
 
 if __name__ == "__main__":
-    os.system("python sources_application/Run.py")
+    os.system("python server/App.py")

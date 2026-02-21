@@ -1,9 +1,19 @@
-import platform
-from rich import print
+import os
+import sys
 
-from Environment import *
+sys.path.append(os.getcwd())
 
 
-def debug(string: str):
-    if platform.node() != SERVER_NAME:
-        print(string)
+import ipdb
+import inspect
+
+
+class Debug:
+
+    @staticmethod
+    def debug():
+        in_docker = os.path.isfile("/.dockerenv")
+
+        if not in_docker:
+            caller_frame = inspect.currentframe().f_back
+            ipdb.set_trace(frame=caller_frame)
