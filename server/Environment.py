@@ -4,7 +4,7 @@ import sys
 sys.path.append(os.getcwd())
 
 
-from server.utilities.Debug import Debug
+# from server.utilities.Debug import debug
 
 from dotenv import load_dotenv
 
