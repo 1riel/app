@@ -43,8 +43,7 @@ class _Driver_PageState extends State<Driver_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text("បញ្ជីអ្នកដឹកជញ្ជូន"),
+        title: Text("Driver Page"), //
         actions: [
           IconButton(icon: const Icon(Icons.search), onPressed: () {}), //
           SizedBox(width: 10),

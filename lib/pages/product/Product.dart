@@ -19,7 +19,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '1riel.com', //
+      title: TITLE, //
       theme: Theme_Data.get_theme(),
       home: const Product_Page(),
       routes: Routes.routes,
@@ -55,10 +55,11 @@ class _Product_PageState extends State<Product_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('បញ្ជីទំនិញ'),
+            Text('Product'),
             Text(
               'Version: $VERSION',
               style: const TextStyle(fontSize: 12, color: Colors.blue, fontWeight: FontWeight.w500),
@@ -73,10 +74,9 @@ class _Product_PageState extends State<Product_Page> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: .center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            //
-            Text('Home Page', style: Theme.of(context).textTheme.bodyLarge),
+            Text('Home Page', style: Theme.of(context).textTheme.bodyLarge), //
           ],
         ),
       ),

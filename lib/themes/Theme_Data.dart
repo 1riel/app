@@ -49,7 +49,8 @@ class Theme_Data {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(0), //
           ),
-          minimumSize: Size(0, 50),
+          minimumSize: Size(0, 40),
+          padding: EdgeInsets.symmetric(horizontal: 8),
         ),
       ),
 
@@ -92,6 +93,13 @@ class Theme_Data {
       inputDecorationTheme: InputDecorationTheme(
         //
         border: const OutlineInputBorder(),
+      ),
+
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+        sizeConstraints: const BoxConstraints.tightFor(width: 40, height: 40),
       ),
 
       // iconButtonTheme: IconButtonThemeData(

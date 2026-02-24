@@ -1,3 +1,4 @@
+import 'package:app_1riel/Environment.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app_1riel/themes/Theme_Data.dart';
@@ -14,7 +15,7 @@ class About extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '1riel.com', //
+      title: TITLE, //
       theme: Theme_Data.get_theme(),
       home: const About_Page(),
       routes: Routes.routes,
@@ -34,13 +35,13 @@ class _About_PageState extends State<About_Page> {
   @override
   void initState() {
     super.initState();
-    print('Driver Page Loaded');
+    print('About Page Loaded');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: Text("អំពីយើង")),
+      appBar: AppBar(title: Text("About")), //
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -49,6 +50,7 @@ class _About_PageState extends State<About_Page> {
           ],
         ),
       ),
+      drawer: const Main_Drawer(),
     );
   }
 }

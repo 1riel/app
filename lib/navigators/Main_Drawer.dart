@@ -26,8 +26,8 @@ class _Main_DrawerState extends State<Main_Drawer> {
           Container(
             height: 200, //
             alignment: Alignment.center,
-            child: Image.asset(
-              'assets/background.png',
+            child: Image.network(
+              '$MINIO/public/assets/background.png',
               height: 200,
               fit: BoxFit.cover, //
             ), //
@@ -81,7 +81,7 @@ class _Main_DrawerState extends State<Main_Drawer> {
           // about us
           ListTile(
             leading: Icon(Icons.store_outlined), //
-            title: Text('ចុះឈ្មោះដើម្បីបង្កើតហាង', overflow: TextOverflow.ellipsis, maxLines: 1),
+            title: Text('Manage Store', overflow: TextOverflow.ellipsis, maxLines: 1),
             onTap: () {
               // todo:
               // Navigator.pop(context); //
@@ -91,7 +91,7 @@ class _Main_DrawerState extends State<Main_Drawer> {
           // about us
           ListTile(
             leading: Icon(Icons.drive_eta_outlined), //
-            title: Text('ចុះឈ្មោះជាអ្នកដឹកជញ្ជូន', overflow: TextOverflow.ellipsis, maxLines: 1),
+            title: Text('Manage Driver', overflow: TextOverflow.ellipsis, maxLines: 1),
             onTap: () {
               // todo:
               // Navigator.pop(context); //
@@ -104,13 +104,13 @@ class _Main_DrawerState extends State<Main_Drawer> {
             title: Text('Manage Product', overflow: TextOverflow.ellipsis, maxLines: 1),
             onTap: () {
               Navigator.pop(context); //
-              Navigator.of(context).push(Routes.Manage_Product());
+              // Navigator.of(context).push(Routes.Manage_Product());
             },
           ),
           // about us
           ListTile(
             leading: Icon(Icons.info_outline), //
-            title: Text('អំពីយើង', overflow: TextOverflow.ellipsis, maxLines: 1),
+            title: Text('About Us', overflow: TextOverflow.ellipsis, maxLines: 1),
             onTap: () {
               Navigator.pop(context); //
               Navigator.of(context).pushNamed('/about');

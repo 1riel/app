@@ -1,11 +1,10 @@
-import 'package:app_1riel/pages/product/Update_Product.dart';
-import 'package:app_1riel/pages/profile/Update_Data.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
+import 'package:app_1riel/pages/profile/Update_Data.dart';
 import 'package:app_1riel/Environment.dart';
 import 'package:app_1riel/utilities/Debug.dart';
 import 'package:app_1riel/pages/profile/Sign_In.dart';
@@ -24,7 +23,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '1riel.com', //
+      title: TITLE, //
       theme: Theme_Data.get_theme(),
       home: const Profile_Page(),
       routes: Routes.routes,
@@ -111,10 +110,10 @@ class _Profile_PageState extends State<Profile_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: Text("ប្រវត្តិរូប")),
+      appBar: AppBar(title: Text("Profile")), //
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.only(top: 0, left: 8, right: 8, bottom: 0),
           child: Center(
             child: SizedBox(
               width: 600,
@@ -131,12 +130,12 @@ class _Profile_PageState extends State<Profile_Page> {
                             width: 600,
                             height: 200, //
                             child: background_image == null
-                                ? Image.asset(
-                                    'assets/background.png',
+                                ? Image.network(
+                                    '$MINIO/public/assets/background.png',
                                     fit: BoxFit.cover, //
                                   )
                                 : Image.network(
-                                    '$MINIO/$background_image',
+                                    '$MINIO/public/$background_image',
                                     fit: BoxFit.cover, //
                                   ),
                           ),
@@ -181,8 +180,8 @@ class _Profile_PageState extends State<Profile_Page> {
                             height: 100,
                             width: 100,
                             child: profile_image == null
-                                ? Image.asset('assets/logo.png', fit: BoxFit.cover) //
-                                : Image.network('$MINIO/$profile_image', fit: BoxFit.cover), //
+                                ? Image.network('$MINIO/public/assets/profile.png', fit: BoxFit.cover) //
+                                : Image.network('$MINIO/public/$profile_image', fit: BoxFit.cover), //
                           ),
                           if (access_token != null)
                             IconButton(
@@ -229,7 +228,7 @@ class _Profile_PageState extends State<Profile_Page> {
                           onPressed: () {
                             Navigator.of(context).push(Routes.Sign_In()).then((value) => init());
                           },
-                          child: Text('ចូលគណនី'),
+                          child: Text('Sign In'),
                         ), //
                         OutlinedButton(
                           onPressed: () {
@@ -239,7 +238,7 @@ class _Profile_PageState extends State<Profile_Page> {
                               }
                             });
                           },
-                          child: Text('បង្កើតគណនី'),
+                          child: Text('Sign Up'),
                         ), //
                         OutlinedButton(
                           onPressed: () {
@@ -249,7 +248,7 @@ class _Profile_PageState extends State<Profile_Page> {
                               }
                             });
                           },
-                          child: Text('ភ្លេចគណនី'),
+                          child: Text('Reset'),
                         ), //
                       ],
                     ),
@@ -258,7 +257,7 @@ class _Profile_PageState extends State<Profile_Page> {
                   SizedBox(height: 8),
 
                   ExpansionTile(
-                    title: Text('ព័ត៌មាន', style: TextStyle(fontWeight: FontWeight.bold)),
+                    title: Text('Information: ', style: TextStyle(fontWeight: FontWeight.bold)),
                     tilePadding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 0.0),
                     initiallyExpanded: true,
                     children: [
@@ -267,7 +266,7 @@ class _Profile_PageState extends State<Profile_Page> {
                         children: [
                           Icon(Icons.person), //
                           SizedBox(width: 8, height: 40),
-                          Text("ឈ្មោះ: ", style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text("Name: ", style: TextStyle(fontWeight: FontWeight.bold)),
                           Text(name ?? ""),
                           Spacer(),
                           if (access_token != null)
@@ -277,7 +276,7 @@ class _Profile_PageState extends State<Profile_Page> {
                                     .push(
                                       MaterialPageRoute(
                                         builder: (context) => Update_Profile_Page(
-                                          title: 'ឈ្មោះ', //
+                                          title: 'Name', //
                                           input: name ?? '',
                                         ),
                                       ),
@@ -308,7 +307,7 @@ class _Profile_PageState extends State<Profile_Page> {
                         children: [
                           Icon(Icons.phone), //
                           SizedBox(width: 8, height: 40),
-                          Text("លេខទូរស័ព្ទ: ", style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text("Phone Number: ", style: TextStyle(fontWeight: FontWeight.bold)),
                           Text(phone_number ?? ""),
                           Spacer(),
                           if (access_token != null)
@@ -318,7 +317,7 @@ class _Profile_PageState extends State<Profile_Page> {
                                     .push(
                                       MaterialPageRoute(
                                         builder: (context) => Update_Profile_Page(
-                                          title: 'លេខទូរស័ព្ទ', //
+                                          title: 'Phone Number', //
                                           input: phone_number ?? '',
                                           keyboard_type: TextInputType.phone,
                                         ),
@@ -350,7 +349,7 @@ class _Profile_PageState extends State<Profile_Page> {
                         children: [
                           Icon(Icons.place), //
                           SizedBox(width: 8, height: 40),
-                          Text("អាសយដ្ឋាន: ", style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text("Address: ", style: TextStyle(fontWeight: FontWeight.bold)),
                           Text(address ?? ""),
                           Spacer(),
                           if (access_token != null)
@@ -360,7 +359,7 @@ class _Profile_PageState extends State<Profile_Page> {
                                     .push(
                                       MaterialPageRoute(
                                         builder: (context) => Update_Profile_Page(
-                                          title: 'អាសយដ្ឋាន', //
+                                          title: 'Address', //
                                           input: address ?? '',
                                         ),
                                       ),
@@ -391,7 +390,7 @@ class _Profile_PageState extends State<Profile_Page> {
 
                   // credential
                   ExpansionTile(
-                    title: Text('គណនី', style: TextStyle(fontWeight: FontWeight.bold)),
+                    title: Text('Credential: ', style: TextStyle(fontWeight: FontWeight.bold)),
                     tilePadding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 0.0),
                     initiallyExpanded: true,
                     children: [
@@ -399,7 +398,7 @@ class _Profile_PageState extends State<Profile_Page> {
                         children: [
                           Icon(Icons.person), //
                           SizedBox(width: 8, height: 40),
-                          Text("ឈ្មោះសម្ងាត់: ", style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text("Username: ", style: TextStyle(fontWeight: FontWeight.bold)),
                           Text(username ?? ""),
                           Spacer(),
                           if (access_token != null)
@@ -409,7 +408,7 @@ class _Profile_PageState extends State<Profile_Page> {
                                     .push(
                                       MaterialPageRoute(
                                         builder: (context) => Update_Profile_Page(
-                                          title: 'ឈ្មោះសម្ងាត់', //
+                                          title: 'Username', //
                                           input: username ?? '',
                                         ),
                                       ),
@@ -439,7 +438,7 @@ class _Profile_PageState extends State<Profile_Page> {
                         children: [
                           Icon(Icons.security_rounded), //
                           SizedBox(width: 8, height: 40),
-                          Text("ពាក្យសម្ងាត់: ", style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text("Password: ", style: TextStyle(fontWeight: FontWeight.bold)),
                           Text(access_token != null ? "**********" : ""),
                           Spacer(),
                           if (access_token != null)
@@ -449,7 +448,7 @@ class _Profile_PageState extends State<Profile_Page> {
                                     .push(
                                       MaterialPageRoute(
                                         builder: (context) => Update_Profile_Page(
-                                          title: 'ពាក្យសម្ងាត់', //
+                                          title: 'Password', //
                                           input: '',
                                         ),
                                       ),

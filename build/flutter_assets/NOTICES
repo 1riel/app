@@ -5130,7 +5130,6 @@ found in the LICENSE file.
 --------------------------------------------------------------------------------
 flutter
 tonic
-url_launcher_web
 
 Copyright 2013 The Flutter Authors. All rights reserved.
 
@@ -20700,6 +20699,7 @@ Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
 --------------------------------------------------------------------------------
 image_picker
+url_launcher_web
 
 Copyright 2013 The Flutter Authors
 

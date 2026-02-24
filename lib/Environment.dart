@@ -3,11 +3,11 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:app_1riel/utilities/Debug.dart';
 
 //
+String TITLE = '1RIEL App';
+
 String HOST_API = kDebugMode ? 'http://127.0.0.1:8000' : 'https://api1.1riel.com/';
 
-String MINIO = 'https://sss1.1riel.com/public';
-
-// String TITLE = 'GTR Application';
+String MINIO = 'https://pub.1riel.com';
 
 // String DEPARTMENT_NAME_EN = "Department of Telecommunications and Network Engineering";
 // String DEPARTMENT_NAME_FR = "Génie des Télécommunications et Réseaux";

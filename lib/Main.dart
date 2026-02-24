@@ -20,7 +20,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: '1riel.com',
       theme: Theme_Data.get_theme(),
-      home: Main_Navigator_Page(index: 3), //
+      home: Main_Navigator_Page(index: 0), //
       routes: Routes.routes,
       debugShowCheckedModeBanner: false,
     );

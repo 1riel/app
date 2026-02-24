@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
+import 'package:app_1riel/Environment.dart';
 import 'package:app_1riel/pages/product/Product.dart';
 import 'package:app_1riel/themes/Theme_Data.dart';
 import 'package:app_1riel/navigators/Main_Drawer.dart';
@@ -20,7 +21,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '1riel.com', //
+      title: TITLE, //
       theme: Theme_Data.get_theme(), //
       home: const Main_Navigator_Page(), //
       debugShowCheckedModeBanner: false, //
@@ -62,10 +63,10 @@ class _Main_Navigator_PageState extends State<Main_Navigator_Page> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _nav_index,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.inventory_2_outlined), label: 'បញ្ជីទំនិញ'),
-          BottomNavigationBarItem(icon: Icon(Icons.store_outlined), label: 'បញ្ជីហាង'),
-          BottomNavigationBarItem(icon: Icon(Icons.drive_eta_outlined), label: 'បញ្ជីអ្នកដឹក'),
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'ប្រវត្តិរូប'),
+          BottomNavigationBarItem(icon: Icon(Icons.inventory_2_outlined), label: 'Products'),
+          BottomNavigationBarItem(icon: Icon(Icons.store_outlined), label: 'Stores'),
+          BottomNavigationBarItem(icon: Icon(Icons.drive_eta_outlined), label: 'Drivers'),
+          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Profile'),
         ],
         onTap: (index) {
           if (index == 0) {
