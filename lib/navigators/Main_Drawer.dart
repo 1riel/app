@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:app_1riel/Environment.dart';
-import 'package:app_1riel/routes/Routes.dart';
+import 'package:app_1riel/navigators/Routes.dart';
 import 'package:app_1riel/utilities/Debug.dart';
 
 class Main_Drawer extends StatefulWidget {

@@ -3,16 +3,7 @@
 
 .*
 !.gitignore
-!.configuration.md
 
 
 **/z*
 **/z*/
-
-*.ipynb
-
-
-# 
-__pycache__
-
-Setup.md

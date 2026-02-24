@@ -1,4 +1,4 @@
-import 'package:app_1riel/routes/Routes.dart';
+import 'package:app_1riel/navigators/Routes.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';

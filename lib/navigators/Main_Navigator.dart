@@ -3,9 +3,9 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 import 'package:app_1riel/pages/product/Product.dart';
 import 'package:app_1riel/themes/Theme_Data.dart';
-import 'package:app_1riel/routes/Main_Drawer.dart';
+import 'package:app_1riel/navigators/Main_Drawer.dart';
 import 'package:app_1riel/pages/driver/Driver.dart';
-import 'package:app_1riel/routes/Routes.dart';
+import 'package:app_1riel/navigators/Routes.dart';
 import 'package:app_1riel/pages/profile/Profile.dart';
 import 'package:app_1riel/pages/store/Store.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:app_1riel/routes/Main_Navigator.dart';
+import 'package:app_1riel/navigators/Main_Navigator.dart';
 import 'package:app_1riel/pages/product/Manage_Product.dart';
 import 'package:app_1riel/pages/About.dart';
 import 'package:app_1riel/pages/driver/Driver.dart';
