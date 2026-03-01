@@ -1,4 +1,5 @@
 import 'package:app_1riel/navigators/Routes.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
@@ -21,22 +22,35 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: TITLE, //
       theme: Theme_Data.get_theme(),
-      home: const Product_Dev(),
+      home: const Product_(),
       routes: Routes.routes,
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class Product_Dev extends StatefulWidget {
-  const Product_Dev({super.key});
+class Product_ extends StatefulWidget {
+  const Product_({super.key});
 
   @override
-  State<Product_Dev> createState() => _Product_DevState();
+  State<Product_> createState() => _Product_State();
 }
 
-class _Product_DevState extends State<Product_Dev> {
-  String VERSION = '0.0.0+0';
+class _Product_State extends State<Product_> {
+  List<Map<String, dynamic>> data_all = [];
+  List<Map<String, dynamic>> data_search = [];
+
+  bool is_search = false;
+  TextEditingController controller_search = TextEditingController();
+
+  final Dio dio = Dio(
+    BaseOptions(
+      baseUrl: HOST_API, //
+      connectTimeout: Duration(seconds: 10), //
+      sendTimeout: Duration(seconds: 10), //
+      receiveTimeout: Duration(seconds: 10), //
+    ),
+  );
 
   @override
   void initState() {
@@ -45,38 +59,28 @@ class _Product_DevState extends State<Product_Dev> {
   }
 
   void init() async {
-    final info = await PackageInfo.fromPlatform();
-    VERSION = '${info.version}+${info.buildNumber}';
-    debug(VERSION);
+    await dio
+        .post(
+          '/product/read', //
+          data: FormData.fromMap({}),
+        )
+        .then((r) {
+          data_all = List<Map<String, dynamic>>.from(r.data);
+
+          print(data_all);
+
+          data_search = data_all;
+
+          setState(() {});
+        })
+        .catchError((e) {});
+
     setState(() {});
   }
 
-  List<Map<String, dynamic>> all_data = [
-    {'order': 0, 'name': 'Product 1 is the best product best product best product best product best product best product', 'description': 'Product 1 is the best product best product best product best product best product best product', 'image': null, 'price': 1000, 'rating': 4.5},
-    {'order': 1, 'name': 'Name #1', 'description': 'Position 2', 'image': null, 'price': 2000, 'rating': 4.0},
-    {'order': 2, 'name': 'Product 3', 'description': 'Position 3', 'image': null, 'price': 3000, 'rating': 5.0},
-  ];
-  late List<Map<String, dynamic>> search_data = all_data;
-
-  bool is_edit = false;
-  bool is_search = false;
-  TextEditingController c_search = TextEditingController();
-
+  // ! make it slower
   void on_search(String query) {
-    search_data = all_data.where((item) => item['name']?.toLowerCase().contains(query.toLowerCase()) == true || item['description']?.toLowerCase().contains(query.toLowerCase()) == true).toList();
-    setState(() {});
-  }
-
-  void on_edit(int index) {
-    // edit product at index
-  }
-
-  void on_reorder(int old_index, int new_index) {
-    if (old_index < new_index) {
-      new_index -= 1;
-    }
-    final item = search_data.removeAt(old_index);
-    search_data.insert(new_index, item);
+    data_search = data_all.where((item) => item['name']?.toLowerCase().contains(query.toLowerCase()) == true || item['description']?.toLowerCase().contains(query.toLowerCase()) == true).toList();
     setState(() {});
   }
 
@@ -84,9 +88,16 @@ class _Product_DevState extends State<Product_Dev> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: is_search
-            ? TextField(
-                controller: c_search,
+        title: !is_search
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Product'), //
+                ],
+              )
+            : TextField(
+                controller: controller_search,
                 autofocus: true,
                 decoration: InputDecoration(
                   hintText: 'Search ...',
@@ -95,17 +106,6 @@ class _Product_DevState extends State<Product_Dev> {
                 onChanged: (value) {
                   on_search(value);
                 },
-              )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Product'),
-                  Text(
-                    'Version: $VERSION',
-                    style: const TextStyle(fontSize: 12, color: Colors.blue, fontWeight: FontWeight.w500),
-                  ),
-                ],
               ),
         actionsPadding: EdgeInsets.only(right: 10),
 
@@ -113,9 +113,12 @@ class _Product_DevState extends State<Product_Dev> {
           IconButton(
             icon: is_search ? Icon(Icons.close) : Icon(Icons.search),
             onPressed: () {
-              setState(() {
-                is_search = !is_search;
-              });
+              is_search = !is_search;
+              if (!is_search) {
+                controller_search.clear();
+                on_search('');
+              }
+              setState(() {});
             },
           ), //
         ],
@@ -124,91 +127,117 @@ class _Product_DevState extends State<Product_Dev> {
       body: Center(
         child: SizedBox(
           width: 600,
-          child: ReorderableListView.builder(
-            itemCount: search_data.length,
-            onReorder: on_reorder,
-            buildDefaultDragHandles: false,
-            itemBuilder: (context, index) {
-              final item = search_data[index];
-              return ListTile(
-                key: ValueKey(item['order']),
-                contentPadding: const EdgeInsets.only(left: 8, right: 8),
-                leading: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if (is_edit) ReorderableDragStartListener(index: index, child: Icon(Icons.drag_indicator)), //
-                    if (is_edit) SizedBox(width: 8),
-                    Image.network('$MINIO/public/assets/logo.png', width: 50, height: 50, fit: BoxFit.contain), //
-                  ],
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(child: Text(item['name'] ?? '', overflow: TextOverflow.ellipsis)),
-                    Text(
-                      '${item['price'] ?? 0.0} R',
-                      style: TextStyle(color: Colors.orange, fontWeight: FontWeight.bold),
-                    ), //
-                  ],
-                ),
-                subtitle: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(child: Text(item['description'] ?? '', overflow: TextOverflow.ellipsis)),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text('${item['rating'] ?? 0.0}'),
-                        SizedBox(width: 4),
-                        Icon(Icons.thumb_up, color: Colors.blue, size: 16),
-                      ],
-                    ),
-                  ],
-                ),
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: data_search.length,
+                  itemBuilder: (context, index) {
+                    final item = data_search[index];
+                    return ListTile(
+                      key: ValueKey(item['order']),
+                      minVerticalPadding: 2,
+                      contentPadding: const EdgeInsets.only(left: 0, right: 8, top: 0, bottom: 0),
+                      title: SizedBox(
+                        height: 100,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(width: 4),
 
-                //
-                trailing: is_edit
-                    ? Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(icon: Icon(Icons.edit), onPressed: () {}), //
-                          IconButton(
-                            icon: Icon(Icons.delete, color: Colors.red),
-                            onPressed: () {},
-                          ), //
-                        ],
-                      )
-                    : null,
-                // view details
-                onTap: () {},
-              );
-            },
+                            // ! make image smaller with fastapi
+                            Container(
+                              height: 100,
+                              color: Colors.grey[300],
+                              child: item['image_1'] != null
+                                  ? Image.network(
+                                      '$MINIO/public/${item['image_1']}',
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (_, _, _) {
+                                        return const Icon(Icons.broken_image, size: 100, color: Colors.grey);
+                                      },
+                                    )
+                                  : const Icon(Icons.image_not_supported, color: Colors.grey, size: 100),
+                            ),
+
+                            const SizedBox(width: 4),
+
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "${item['name'] ?? "N/A"}", //
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(
+                                              "${item['description'] ?? "N/A"}",
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  const Spacer(),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            item['rating']?.toStringAsFixed(2) ?? "N/A", //
+                                            //   "${item['rating'] != null ? item['rating'].toStringAsFixed(2) : "0"}", //
+                                            style: const TextStyle(fontSize: 16, color: Colors.orange),
+                                          ),
+                                          const Icon(Icons.star, color: Colors.orange, size: 18),
+                                        ],
+                                      ),
+                                      Flexible(
+                                        child: Text(
+                                          "${item['price'] ?? "N/A"} KHR",
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                            fontSize: 16, //
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.green,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      onTap: () {
+                        debug("view");
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         ),
       ),
       drawer: Main_Drawer(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            FloatingActionButton(
-              child: is_edit ? Icon(Icons.close) : Icon(Icons.edit),
-              onPressed: () {
-                is_edit = !is_edit;
-                setState(() {});
-              }, //
-            ),
-
-            if (is_edit)
-              FloatingActionButton(
-                onPressed: () {}, //
-                child: const Icon(Icons.add),
-              ),
-          ],
-        ),
-      ),
     );
   }
 }

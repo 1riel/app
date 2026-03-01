@@ -3,7 +3,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:app_1riel/utilities/Debug.dart';
 
 //
-String TITLE = '1RIEL App';
+String TITLE = '1riel.com';
 
 String HOST_API = kDebugMode ? 'http://127.0.0.1:8000' : 'https://api1.1riel.com/';
 
