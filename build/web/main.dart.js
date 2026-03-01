@@ -41828,7 +41828,7 @@ $0(){},
 $S:0}
 A.B4.prototype={
 ah(){var s,r,q=A.bR(0,0,10),p=A.bR(0,0,10)
-p=A.Jm(A.HW("https://api1.1riel.com/",q,A.bR(0,0,10),p))
+p=A.Jm(A.HW("https://api.1riel.com/",q,A.bR(0,0,10),p))
 q=t.z
 s=A.bU(["a","b","c","a"],q)
 r=t.N
@@ -41926,7 +41926,7 @@ $0(){},
 $S:0}
 A.A7.prototype={
 ah(){var s=A.a3j(),r=A.bR(0,0,10),q=A.bR(0,0,10)
-return new A.TN(s,A.Jm(A.HW("https://api1.1riel.com/",r,A.bR(0,0,10),q)))}}
+return new A.TN(s,A.Jm(A.HW("https://api.1riel.com/",r,A.bR(0,0,10),q)))}}
 A.TN.prototype={
 ap(){this.aG()
 this.d1()},
@@ -42285,7 +42285,7 @@ s.d1()},
 $S:0}
 A.AG.prototype={
 ah(){var s=A.a3j(),r=A.bR(0,0,10),q=A.bR(0,0,10)
-q=A.Jm(A.HW("https://api1.1riel.com/",r,A.bR(0,0,10),q))
+q=A.Jm(A.HW("https://api.1riel.com/",r,A.bR(0,0,10),q))
 r=$.au()
 return new A.UF(s,q,new A.eG(B.aS,r),new A.eG(B.aS,r),new A.eG(B.aS,r),new A.eG(B.aS,r),new A.eG(B.aS,r))}}
 A.UF.prototype={
@@ -42410,7 +42410,7 @@ $1(a){A.auO(B.b_,this.a,"Reset Failed")},
 $S:10}
 A.q3.prototype={
 ah(){var s=A.bR(0,0,10),r=A.bR(0,0,10)
-r=A.Jm(A.HW("https://api1.1riel.com/",s,A.bR(0,0,10),r))
+r=A.Jm(A.HW("https://api.1riel.com/",s,A.bR(0,0,10),r))
 s=$.au()
 return new A.Vm(r,new A.eG(B.aS,s),new A.eG(B.aS,s),A.a3j())}}
 A.Vm.prototype={
@@ -42454,7 +42454,7 @@ $1(a){A.aFq(B.b_,this.a,"Sign In Failed")},
 $S:10}
 A.Bk.prototype={
 ah(){var s,r=A.bR(0,0,10),q=A.bR(0,0,10)
-q=A.Jm(A.HW("https://api1.1riel.com/",r,A.bR(0,0,10),q))
+q=A.Jm(A.HW("https://api.1riel.com/",r,A.bR(0,0,10),q))
 r=A.a3j()
 s=$.au()
 return new A.Vn(q,r,new A.eG(B.aS,s),new A.eG(B.aS,s),new A.eG(B.aS,s),new A.eG(B.aS,s),new A.eG(B.aS,s))}}
