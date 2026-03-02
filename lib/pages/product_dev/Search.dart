@@ -47,26 +47,9 @@ class _Search_State extends State<Search_> {
     ),
   );
 
-  Set tmp = {
-    'a',
-    'b',
-    'c',
-    'a', //
-  };
-  final Set<Map<String, dynamic>> setOfMaps = {
-    {'id': 1, 'name': 'Alice'},
-    {'id': 2, 'name': 'Bob'},
-    // {'id': 2, 'name': 'Bob'},
-  };
-
   @override
   void initState() {
     super.initState();
-
-    setOfMaps.add({'id': 2, 'name': 'Bob'});
-
-    print(setOfMaps);
-
     init();
   }
 
@@ -101,7 +84,7 @@ class _Search_State extends State<Search_> {
           .post(
             '/product/search', //
             data: FormData.fromMap({
-              'query': controller_search.text, //
+              'q': controller_search.text, //
             }),
           )
           .then((r) {
@@ -149,18 +132,21 @@ class _Search_State extends State<Search_> {
                 itemBuilder: (c, i) {
                   return ListTile(
                     contentPadding: const EdgeInsets.only(left: 8, right: 8, top: 0, bottom: 0),
+                    visualDensity: VisualDensity(vertical: -4),
+                    minVerticalPadding: 0,
+
                     title: Row(
                       children: [
+                        SizedBox(
+                          width: 60,
+                          height: 60, //
+                          child: Image.network('$HOST_API/public/assets/apple.png?w=60&h=60'),
+                        ),
+                        // Image.network('$MINIO/public/assets/apple.png'),
+                        SizedBox(width: 4),
                         Text(data_all[i]['name']?.toString() ?? ''), //
                         Spacer(),
                         Text(data_all[i]['price']?.toString() ?? ''),
-                      ],
-                    ),
-                    subtitle: Row(
-                      children: [
-                        Text(data_all[i]['description']?.toString() ?? ''), //
-                        Spacer(),
-                        Text(data_all[i]['description']?.toString() ?? ''), //
                       ],
                     ),
                     onTap: () {
