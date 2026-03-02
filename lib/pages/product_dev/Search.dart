@@ -40,7 +40,7 @@ class Search_ extends StatefulWidget {
 class _Search_State extends State<Search_> {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: HOST_API, //
+      baseUrl: API_HOST, //
       connectTimeout: Duration(seconds: 10), //
       sendTimeout: Duration(seconds: 10), //
       receiveTimeout: Duration(seconds: 10), //
@@ -56,18 +56,18 @@ class _Search_State extends State<Search_> {
   List<Map<String, dynamic>> data_all = [];
 
   TextEditingController controller_search = TextEditingController();
+  ScrollController controller_listview = ScrollController();
 
   void init() async {
     await dio
         .post(
           '/product/search', //
           data: FormData.fromMap({
-            'query': "", //
+            'query': '', //
           }),
         )
         .then((r) {
           data_all = List<Map<String, dynamic>>.from(r.data);
-          // print(data_all);
           setState(() {});
         })
         .catchError((e) {});
@@ -79,7 +79,7 @@ class _Search_State extends State<Search_> {
   // ! make it faster
   void on_search() async {
     if (_debounce?.isActive ?? false) _debounce!.cancel();
-    _debounce = Timer(const Duration(milliseconds: 300), () async {
+    _debounce = Timer(const Duration(milliseconds: 200), () async {
       await dio
           .post(
             '/product/search', //
@@ -90,6 +90,8 @@ class _Search_State extends State<Search_> {
           .then((r) {
             data_all = List<Map<String, dynamic>>.from(r.data);
             // print(data_all);
+            // move scroll to top
+            controller_listview.jumpTo(0);
             setState(() {});
           })
           .catchError((e) {});
@@ -101,16 +103,20 @@ class _Search_State extends State<Search_> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TextField(
-          controller: controller_search,
-          autofocus: true,
-          decoration: InputDecoration(
-            hintText: 'Search ...',
-            border: InputBorder.none, //
+        centerTitle: true,
+        title: SizedBox(
+          width: 600,
+          child: TextField(
+            controller: controller_search,
+            autofocus: true,
+            decoration: InputDecoration(
+              hintText: 'Search ...',
+              border: InputBorder.none, //
+            ),
+            onChanged: (v) {
+              on_search();
+            },
           ),
-          onChanged: (v) {
-            on_search();
-          },
         ),
         actionsPadding: EdgeInsets.only(right: 8),
         actions: [
@@ -123,38 +129,32 @@ class _Search_State extends State<Search_> {
           ),
         ],
       ), //
-      body: Padding(
-        padding: const EdgeInsets.only(top: 0, bottom: 0, left: 0, right: 0),
-        child: data_all.isEmpty
-            ? Center(child: Text('No data found'))
-            : ListView.builder(
-                itemCount: data_all.length,
-                itemBuilder: (c, i) {
-                  return ListTile(
-                    contentPadding: const EdgeInsets.only(left: 8, right: 8, top: 0, bottom: 0),
-                    visualDensity: VisualDensity(vertical: -4),
-                    minVerticalPadding: 0,
+      body: Center(
+        child: SizedBox(
+          width: 600,
+          child: ListView.builder(
+            controller: controller_listview,
+            itemCount: data_all.length,
+            itemBuilder: (c, i) {
+              return ListTile(
+                contentPadding: const EdgeInsets.only(left: 8, right: 8, top: 0, bottom: 0),
+                visualDensity: VisualDensity(vertical: -4),
+                minVerticalPadding: 0,
 
-                    title: Row(
-                      children: [
-                        SizedBox(
-                          width: 60,
-                          height: 60, //
-                          child: Image.network('$HOST_API/public/assets/apple.png?w=60&h=60'),
-                        ),
-                        // Image.network('$MINIO/public/assets/apple.png'),
-                        SizedBox(width: 4),
-                        Text(data_all[i]['name']?.toString() ?? ''), //
-                        Spacer(),
-                        Text(data_all[i]['price']?.toString() ?? ''),
-                      ],
-                    ),
-                    onTap: () {
-                      //
-                    },
-                  );
+                title: Row(
+                  children: [
+                    Text(data_all[i]['name']?.toString() ?? ''), //
+                    Spacer(),
+                    Text('${data_all[i]['price']?.toString() ?? ''} KHR'), //,
+                  ],
+                ),
+                onTap: () {
+                  //
                 },
-              ), //
+              );
+            },
+          ), //
+        ), //
       ),
     );
   }

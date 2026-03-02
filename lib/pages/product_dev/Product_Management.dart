@@ -46,7 +46,7 @@ class _Product_DevState extends State<Product_Dev> {
 
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: HOST_API, //
+      baseUrl: API_HOST, //
       connectTimeout: Duration(seconds: 10), //
       sendTimeout: Duration(seconds: 10), //
       receiveTimeout: Duration(seconds: 10), //
@@ -176,7 +176,7 @@ class _Product_DevState extends State<Product_Dev> {
                         color: Colors.grey[300],
                         child: item['image_1'] != null
                             ? Image.network(
-                                '$MINIO/public/${item['image_1']}',
+                                '$API_HOST/public/${item['image_1']}',
                                 fit: BoxFit.cover,
                                 errorBuilder: (_, _, _) {
                                   return const Icon(Icons.broken_image, size: 100, color: Colors.grey);

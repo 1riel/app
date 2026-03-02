@@ -5,9 +5,9 @@ import 'package:app_1riel/utilities/Debug.dart';
 //
 String TITLE = '1riel.com';
 
-String HOST_API = kDebugMode ? 'http://127.0.0.1:8000' : 'https://api.1riel.com';
+String API_HOST = kDebugMode ? 'http://127.0.0.1:8000' : 'https://api.1riel.com';
 
-String MINIO = 'https://pub.1riel.com';
+// String MINIO = 'https://pub.1riel.com';
 
 // String DEPARTMENT_NAME_EN = "Department of Telecommunications and Network Engineering";
 // String DEPARTMENT_NAME_FR = "Génie des Télécommunications et Réseaux";

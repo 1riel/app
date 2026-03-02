@@ -43,7 +43,7 @@ class _Reset_PageState extends State<Reset_Page> {
 
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: HOST_API, //
+      baseUrl: API_HOST, //
       connectTimeout: Duration(seconds: 10), //
       sendTimeout: Duration(seconds: 10), //
       receiveTimeout: Duration(seconds: 10), //

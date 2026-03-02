@@ -54,7 +54,7 @@ class _Profile_PageState extends State<Profile_Page> {
 
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: HOST_API, //
+      baseUrl: API_HOST, //
       connectTimeout: Duration(seconds: 10), //
       sendTimeout: Duration(seconds: 10), //
       receiveTimeout: Duration(seconds: 10), //
@@ -131,11 +131,11 @@ class _Profile_PageState extends State<Profile_Page> {
                             height: 200, //
                             child: background_image == null
                                 ? Image.network(
-                                    '$MINIO/public/assets/background.png',
+                                    '$API_HOST/public/assets/background.png',
                                     fit: BoxFit.cover, //
                                   )
                                 : Image.network(
-                                    '$MINIO/public/$background_image',
+                                    '$API_HOST/public/$background_image',
                                     fit: BoxFit.cover, //
                                   ),
                           ),
@@ -180,8 +180,8 @@ class _Profile_PageState extends State<Profile_Page> {
                             height: 100,
                             width: 100,
                             child: profile_image == null
-                                ? Image.network('$MINIO/public/assets/profile.png', fit: BoxFit.cover) //
-                                : Image.network('$MINIO/public/$profile_image', fit: BoxFit.cover), //
+                                ? Image.network('$API_HOST/public/assets/profile.png', fit: BoxFit.cover) //
+                                : Image.network('$API_HOST/public/$profile_image', fit: BoxFit.cover), //
                           ),
                           if (access_token != null)
                             IconButton(

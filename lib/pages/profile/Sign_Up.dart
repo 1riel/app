@@ -40,7 +40,7 @@ class Sign_Up_Page extends StatefulWidget {
 class _Sign_Up_PageState extends State<Sign_Up_Page> {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: HOST_API, //
+      baseUrl: API_HOST, //
       connectTimeout: Duration(seconds: 10), //
       sendTimeout: Duration(seconds: 10), //
       receiveTimeout: Duration(seconds: 10), //
