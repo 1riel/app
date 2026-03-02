@@ -74,6 +74,32 @@ class _Search_State extends State<Search_> {
     setState(() {});
   }
 
+  bool has_more = true;
+
+  void load_more() async {
+    if (!has_more) return;
+    // Run in background without blocking UI
+    Future.microtask(() async {
+      try {
+        final r = await dio.post(
+          '/product/search', //
+          data: FormData.fromMap({'q': controller_search.text, 'offset': data_all.length}),
+        );
+
+        if (r.data is List) {
+          has_more = r.data.length >= 100;
+        } else {
+          has_more = false;
+        }
+
+        data_all.addAll(List<Map<String, dynamic>>.from(r.data));
+        setState(() {});
+      } catch (e) {
+        // Handle error silently
+      }
+    });
+  }
+
   Timer? _debounce;
 
   // ! make it faster
@@ -89,9 +115,8 @@ class _Search_State extends State<Search_> {
           )
           .then((r) {
             data_all = List<Map<String, dynamic>>.from(r.data);
-            // print(data_all);
-            // move scroll to top
             controller_listview.jumpTo(0);
+            has_more = true;
             setState(() {});
           })
           .catchError((e) {});
@@ -110,8 +135,8 @@ class _Search_State extends State<Search_> {
             controller: controller_search,
             autofocus: true,
             decoration: InputDecoration(
-              hintText: 'Search ...',
-              border: InputBorder.none, //
+              hintText: 'Search ...', //
+              border: UnderlineInputBorder(),
             ),
             onChanged: (v) {
               on_search();
@@ -124,6 +149,8 @@ class _Search_State extends State<Search_> {
             icon: Icon(Icons.clear),
             onPressed: () {
               controller_search.clear();
+              //   focus on text field
+              FocusScope.of(context).requestFocus(FocusNode());
               on_search();
             },
           ),
@@ -134,13 +161,19 @@ class _Search_State extends State<Search_> {
           width: 600,
           child: ListView.builder(
             controller: controller_listview,
-            itemCount: data_all.length,
+            itemCount: data_all.length + (has_more ? 1 : 0),
             itemBuilder: (c, i) {
+              if (i == data_all.length) {
+                load_more();
+                return const Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Center(child: CircularProgressIndicator()),
+                );
+              }
               return ListTile(
                 contentPadding: const EdgeInsets.only(left: 8, right: 8, top: 0, bottom: 0),
                 visualDensity: VisualDensity(vertical: -4),
                 minVerticalPadding: 0,
-
                 title: Row(
                   children: [
                     Text(data_all[i]['name']?.toString() ?? ''), //
