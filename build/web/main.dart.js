@@ -41828,7 +41828,7 @@ $0(){},
 $S:0}
 A.B4.prototype={
 ah(){var s=A.bR(0,0,10),r=A.bR(0,0,10)
-r=A.Jn(A.HW("https://api.1riel.com/",s,A.bR(0,0,10),r))
+r=A.Jn(A.HW("https://api.1riel.com",s,A.bR(0,0,10),r))
 s=A.c([],t.H7)
 return new A.V1(r,s,new A.eG(B.aS,$.au()))}}
 A.V1.prototype={
@@ -41900,7 +41900,7 @@ s.f.oX(B.OR)
 s.Ap()},
 $S:0}
 A.aqy.prototype={
-$2(a,b){var s=null,r=A.bi(A.yE("https://api.1riel.com//public/assets/apple.png?w=60&h=60",s,s),60,60),q=A.bi(s,s,4),p=this.a,o=p.e[b].h(0,"name")
+$2(a,b){var s=null,r=A.bi(A.yE("https://api.1riel.com/public/assets/apple.png?w=60&h=60",s,s),60,60),q=A.bi(s,s,4),p=this.a,o=p.e[b].h(0,"name")
 o=o==null?s:J.d8(o)
 o=A.aK(o==null?"":o,s,s,s,s,s,s)
 p=p.e[b].h(0,"price")
@@ -41912,7 +41912,7 @@ $0(){},
 $S:0}
 A.A7.prototype={
 ah(){var s=A.a3j(),r=A.bR(0,0,10),q=A.bR(0,0,10)
-return new A.TN(s,A.Jn(A.HW("https://api.1riel.com/",r,A.bR(0,0,10),q)))}}
+return new A.TN(s,A.Jn(A.HW("https://api.1riel.com",r,A.bR(0,0,10),q)))}}
 A.TN.prototype={
 ap(){this.aG()
 this.d1()},
@@ -42271,7 +42271,7 @@ s.d1()},
 $S:0}
 A.AG.prototype={
 ah(){var s=A.a3j(),r=A.bR(0,0,10),q=A.bR(0,0,10)
-q=A.Jn(A.HW("https://api.1riel.com/",r,A.bR(0,0,10),q))
+q=A.Jn(A.HW("https://api.1riel.com",r,A.bR(0,0,10),q))
 r=$.au()
 return new A.UF(s,q,new A.eG(B.aS,r),new A.eG(B.aS,r),new A.eG(B.aS,r),new A.eG(B.aS,r),new A.eG(B.aS,r))}}
 A.UF.prototype={
@@ -42396,7 +42396,7 @@ $1(a){A.auO(B.b_,this.a,"Reset Failed")},
 $S:10}
 A.q3.prototype={
 ah(){var s=A.bR(0,0,10),r=A.bR(0,0,10)
-r=A.Jn(A.HW("https://api.1riel.com/",s,A.bR(0,0,10),r))
+r=A.Jn(A.HW("https://api.1riel.com",s,A.bR(0,0,10),r))
 s=$.au()
 return new A.Vm(r,new A.eG(B.aS,s),new A.eG(B.aS,s),A.a3j())}}
 A.Vm.prototype={
@@ -42440,7 +42440,7 @@ $1(a){A.aFq(B.b_,this.a,"Sign In Failed")},
 $S:10}
 A.Bk.prototype={
 ah(){var s,r=A.bR(0,0,10),q=A.bR(0,0,10)
-q=A.Jn(A.HW("https://api.1riel.com/",r,A.bR(0,0,10),q))
+q=A.Jn(A.HW("https://api.1riel.com",r,A.bR(0,0,10),q))
 r=A.a3j()
 s=$.au()
 return new A.Vn(q,r,new A.eG(B.aS,s),new A.eG(B.aS,s),new A.eG(B.aS,s),new A.eG(B.aS,s),new A.eG(B.aS,s))}}
