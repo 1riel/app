@@ -9,7 +9,6 @@ import 'package:app_1riel/themes/Theme_Data.dart';
 import 'package:app_1riel/navigators/Main_Drawer.dart';
 
 void main() {
-  usePathUrlStrategy();
   runApp(const App());
 }
 
@@ -22,12 +21,12 @@ class App extends StatelessWidget {
       title: TITLE, //
       theme: Theme_Data.get_theme(),
       routes: Routes.routes,
-      home: const Update_Product_Page(
+      home: const View_Product_(
         input: {
-          'name': 'Sample Product', //
+          'name': 'Apple', //
           'description': 'This is a sample product description.', //
           'price': '1000', //
-          'unit_price': 'Piece', //
+          'rating': '4.5', //
         }, //
       ),
       debugShowCheckedModeBanner: false,
@@ -35,16 +34,16 @@ class App extends StatelessWidget {
   }
 }
 
-class Update_Product_Page extends StatefulWidget {
-  const Update_Product_Page({super.key, required this.input});
+class View_Product_ extends StatefulWidget {
+  const View_Product_({super.key, required this.input});
 
   final dynamic input;
 
   @override
-  State<Update_Product_Page> createState() => _Update_Product_PageState();
+  State<View_Product_> createState() => _View_Product_State();
 }
 
-class _Update_Product_PageState extends State<Update_Product_Page> {
+class _View_Product_State extends State<View_Product_> {
   //
   TextEditingController controller_name = TextEditingController();
   TextEditingController controller_description = TextEditingController();
@@ -66,7 +65,7 @@ class _Update_Product_PageState extends State<Update_Product_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: Text('Update Product Page')),
+      appBar: AppBar(title: Text('${widget.input['name'] ?? 'N/A'}')),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(8.0),
@@ -75,58 +74,71 @@ class _Update_Product_PageState extends State<Update_Product_Page> {
               width: 600,
               child: Column(
                 children: [
+                  SizedBox(height: 200, width: 200, child: Placeholder()),
+
+                  SizedBox(height: 8.0),
+
                   SizedBox(
-                    height: 200,
-                    width: 200,
-                    child: Placeholder(), // todo: image upload
-                  ),
-                  SizedBox(height: 8.0),
-                  TextField(
-                    controller: controller_name,
-                    decoration: InputDecoration(labelText: 'Name'), //
-                  ),
-                  SizedBox(height: 8.0),
-                  TextField(
-                    controller: controller_description,
-                    decoration: InputDecoration(labelText: 'Description'), //
-                  ),
-                  SizedBox(height: 8.0),
-                  TextField(
-                    controller: controller_price,
-                    decoration: InputDecoration(labelText: 'Price'), //
-                  ),
-                  SizedBox(height: 8.0),
-                  TextField(
-                    controller: controller_unit_price,
-                    decoration: InputDecoration(labelText: 'Unit Price'), //
+                    height: 100,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(right: 8),
+                          child: SizedBox(height: 100, width: 100, child: Placeholder()),
+                        );
+                      },
+                    ),
                   ),
 
-                  SizedBox(height: 16.0),
+                  SizedBox(height: 8.0),
+
+                  // description
+                  SizedBox(
+                    height: 100, //
+                    child: Text(
+                      widget.input['description'] ?? '', //
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      maxLines: null,
+                    ),
+                  ),
+
+                  // price
+                  Text('Price: ${widget.input['price'] ?? 'N/A'}'),
+
+                  SizedBox(height: 8.0),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      OutlinedButton(
+                      // like button
+                      OutlinedButton.icon(
                         onPressed: () {
-                          // Handle update action
-                          Navigator.of(context).pop();
+                          // Handle like action
                         },
-                        child: Text('Cancel'),
+                        icon: const Icon(Icons.thumb_up_outlined),
+                        label: const Text('Like'),
                       ),
-                      OutlinedButton(
+
+                      // rating
+                      Text('Rating: ${widget.input['rating'] ?? 'N/A'}'),
+
+                      // dislike button
+                      OutlinedButton.icon(
                         onPressed: () {
-                          // Handle update action
-                          dynamic output = {
-                            'name': controller_name.text,
-                            'description': controller_description.text,
-                            'price': controller_price.text,
-                            'unit_price': controller_unit_price.text, //
-                          };
-                          Navigator.of(context).pop(output);
+                          // Handle dislike action
                         },
-                        child: Text('Update'),
+                        icon: const Icon(Icons.thumb_down_outlined),
+                        label: const Text('Dislike'),
                       ),
                     ],
                   ),
+
+                  SizedBox(height: 16.0),
+
+                  const Text('Contact'),
+                  const Text('Comments'),
                 ],
               ),
             ),

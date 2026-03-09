@@ -54,17 +54,16 @@ class _Search_State extends State<Search_> {
   }
 
   List<Map<String, dynamic>> data_all = [];
-
   TextEditingController controller_search = TextEditingController();
   ScrollController controller_listview = ScrollController();
+
+  int limit = 100;
 
   void init() async {
     await dio
         .post(
-          '/product/search', //
-          data: FormData.fromMap({
-            'query': '', //
-          }),
+          '/product/read', //
+          data: FormData.fromMap({}),
         )
         .then((r) {
           data_all = List<Map<String, dynamic>>.from(r.data);
@@ -75,19 +74,21 @@ class _Search_State extends State<Search_> {
   }
 
   bool has_more = true;
-
   void load_more() async {
     if (!has_more) return;
     // Run in background without blocking UI
     Future.microtask(() async {
       try {
         final r = await dio.post(
-          '/product/search', //
-          data: FormData.fromMap({'q': controller_search.text, 'offset': data_all.length}),
+          '/product/read', //
+          data: FormData.fromMap({
+            'query': controller_search.text, //
+            'offset': data_all.length,
+          }),
         );
 
         if (r.data is List) {
-          has_more = r.data.length >= 100;
+          has_more = r.data.length >= limit;
         } else {
           has_more = false;
         }
@@ -100,17 +101,16 @@ class _Search_State extends State<Search_> {
     });
   }
 
-  Timer? _debounce;
-
   // ! make it faster
+  Timer? _debounce;
   void on_search() async {
     if (_debounce?.isActive ?? false) _debounce!.cancel();
     _debounce = Timer(const Duration(milliseconds: 200), () async {
       await dio
           .post(
-            '/product/search', //
+            '/product/read', //
             data: FormData.fromMap({
-              'q': controller_search.text, //
+              'query': controller_search.text, //
             }),
           )
           .then((r) {

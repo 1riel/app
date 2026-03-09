@@ -7,7 +7,7 @@ String TITLE = '1riel.com';
 
 String API_HOST = kDebugMode ? 'http://127.0.0.1:8000' : 'https://api.1riel.com';
 
-// String MINIO = 'https://pub.1riel.com';
+String MINIO_PUBLIC = kDebugMode ? 'http://msl-t470:9000/public' : 'https://sss.1riel.com/public';
 
 // String DEPARTMENT_NAME_EN = "Department of Telecommunications and Network Engineering";
 // String DEPARTMENT_NAME_FR = "Génie des Télécommunications et Réseaux";
