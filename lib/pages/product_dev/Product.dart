@@ -50,7 +50,7 @@ class _Product_State extends State<Product_> {
   @override
   void initState() {
     super.initState();
-    init();
+    // init();
   }
 
   bool is_edit = false;
@@ -114,12 +114,7 @@ class _Product_State extends State<Product_> {
           }),
         )
         .then((r) {
-          if (r.data is List) {
-            has_more = r.data.length >= limit;
-          } else {
-            has_more = false;
-          }
-
+          has_more = (r.data is List) ? (r.data.length >= limit) : false;
           data_all.addAll(List<Map<String, dynamic>>.from(r.data));
           setState(() {});
         })
@@ -281,7 +276,7 @@ class _Product_State extends State<Product_> {
                       ),
 
                       onTap: () {
-                        debug("view");
+                        print(data_all[i]['name']);
                       },
                     );
                   },
