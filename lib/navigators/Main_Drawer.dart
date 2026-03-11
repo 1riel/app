@@ -27,7 +27,7 @@ class _Main_DrawerState extends State<Main_Drawer> {
             height: 200, //
             alignment: Alignment.center,
             child: Image.network(
-              '$MINIO_PUBLIC/256/assets/background.png', //
+              '$MINIO_PUBLIC/200/assets/background.png', //
               height: 200,
               fit: BoxFit.cover, //
             ), //

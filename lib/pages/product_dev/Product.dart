@@ -205,7 +205,7 @@ class _Product_State extends State<Product_> {
                               child:
                                   data_all[i]['image_1'] !=
                                       null //
-                                  ? Image.network('$MINIO_PUBLIC/128/${data_all[i]['image_1']}', fit: BoxFit.contain)
+                                  ? Image.network('$MINIO_PUBLIC/100/${data_all[i]['image_1']}', fit: BoxFit.contain)
                                   : const Icon(Icons.image_not_supported),
                             ),
 

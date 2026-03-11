@@ -130,14 +130,8 @@ class _Profile_PageState extends State<Profile_Page> {
                             width: 600,
                             height: 200, //
                             child: background_image == null
-                                ? Image.network(
-                                    '$API_HOST/public/assets/background.png',
-                                    fit: BoxFit.cover, //
-                                  )
-                                : Image.network(
-                                    '$API_HOST/public/$background_image',
-                                    fit: BoxFit.cover, //
-                                  ),
+                                ? Image.network('$MINIO_PUBLIC/200/assets/background.png') //
+                                : Image.network('$MINIO_PUBLIC/200/$background_image'),
                           ),
                           if (access_token != null)
                             IconButton(
@@ -180,8 +174,8 @@ class _Profile_PageState extends State<Profile_Page> {
                             height: 100,
                             width: 100,
                             child: profile_image == null
-                                ? Image.network('$API_HOST/public/assets/profile.png', fit: BoxFit.cover) //
-                                : Image.network('$API_HOST/public/$profile_image', fit: BoxFit.cover), //
+                                ? Image.network('$MINIO_PUBLIC/100/assets/1riel.png') //
+                                : Image.network('$MINIO_PUBLIC/100/$profile_image'), //
                           ),
                           if (access_token != null)
                             IconButton(
@@ -531,7 +525,7 @@ class _Profile_PageState extends State<Profile_Page> {
                             secure_storage.delete(key: 'access_token');
                             init();
                           },
-                          child: Text('ចាកចេញពីគណនី', style: TextStyle(color: Colors.red)),
+                          child: Text('Sign Out', style: TextStyle(color: Colors.red)),
                         ), //
                       ],
                     ),

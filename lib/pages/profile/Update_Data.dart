@@ -63,7 +63,7 @@ class _Update_Profile_PageState extends State<Update_Profile_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: Text('កែ ${widget.title}')),
+      appBar: AppBar(centerTitle: true, title: Text('Update ${widget.title}')),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(8.0),
@@ -86,11 +86,11 @@ class _Update_Profile_PageState extends State<Update_Profile_Page> {
                     children: [
                       OutlinedButton(
                         onPressed: () => Navigator.of(context).pop(),
-                        child: Text('បោះបង់'), //
+                        child: Text('Cancel'), //
                       ),
                       OutlinedButton(
                         onPressed: () => Navigator.of(context).pop(controller_input.text),
-                        child: Text('កែប្រែ'), //
+                        child: Text('Save'), //
                       ),
                     ],
                   ),
