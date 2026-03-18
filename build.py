@@ -42,4 +42,6 @@ if build_match:
 # build web release
 # os.system("flutter build web --release")
 # os.system("flutter build web --release --base-href /repo_1riel_frontend/")
+
+# os.system("flutter build web --release --base-href /")
 os.system("flutter build web --release --base-href /app/")

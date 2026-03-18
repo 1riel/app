@@ -43,8 +43,7 @@ class _Store_PageState extends State<Store_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text("បញ្ចីហាង"),
+        title: Text("Store"),
         actions: [
           IconButton(icon: const Icon(Icons.search), onPressed: () {}), //
           SizedBox(width: 10),
@@ -54,7 +53,7 @@ class _Store_PageState extends State<Store_Page> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('សូមចុះឈ្មោះដើម្បីបង្កើតហាង'), //
+            Text('Please sign in to create a store'), //
           ],
         ),
       ),
