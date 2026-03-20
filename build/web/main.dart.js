@@ -42158,7 +42158,7 @@ $1(a){},
 $S:8}
 A.aoI.prototype={
 $1(a){var s=this.a,r=a.a
-s.Q=t.j.b(r)&&J.cl(r)>=100
+s.Q=t.j.b(r)&&J.cl(r)>=1000
 B.b.V(s.r,A.fM(a.a,!0,t.a))
 s.a7(new A.aoH())},
 $S:17}
@@ -42319,7 +42319,7 @@ A.apz.prototype={
 $0(){},
 $S:0}
 A.apk.prototype={
-$0(){var s=0,r=A.E(t.H),q,p=this,o,n,m,l,k,j,i,h,g,f
+$0(){var s=0,r=A.E(t.H),q,p=this,o,n,m,l,k,j,i,h,g
 var $async$$0=A.F(function(a,b){if(a===1)return A.B(b,r)
 for(;;)switch(s){case 0:s=3
 return A.I(new A.KO().Xg(B.nX),$async$$0)
@@ -42329,15 +42329,14 @@ break}o=p.a
 n=t.z
 m=p.b
 k=o.at
-j="/credential/upload"
+j="/credential/upload/background_image"
 i=A
 h=A
-g="background_image"
-f=A
+g=A
 s=5
 return A.I(l.AV(),$async$$0)
 case 5:s=4
-return A.I(k.fc(j,i.eU(h.ab([g,f.aC2(b,l.b)],t.N,n)),n).aI(new A.apa(o,m),t.P).di(new A.apb(m)),$async$$0)
+return A.I(k.fc(j,i.eU(h.ab(["value",g.aC2(b,l.b)],t.N,n)),n).aI(new A.apa(o,m),t.P).di(new A.apb(m)),$async$$0)
 case 4:case 1:return A.C(q,r)}})
 return A.D($async$$0,r)},
 $S:11}
@@ -42349,7 +42348,7 @@ A.apb.prototype={
 $1(a){A.fv(B.b1,this.a,"Update Fail")},
 $S:8}
 A.apl.prototype={
-$0(){var s=0,r=A.E(t.H),q,p=this,o,n,m,l,k,j,i,h,g,f
+$0(){var s=0,r=A.E(t.H),q,p=this,o,n,m,l,k,j,i,h,g
 var $async$$0=A.F(function(a,b){if(a===1)return A.B(b,r)
 for(;;)switch(s){case 0:s=3
 return A.I(new A.KO().Xg(B.nX),$async$$0)
@@ -42359,15 +42358,14 @@ break}o=p.a
 n=t.z
 m=p.b
 k=o.at
-j="/credential/upload"
+j="/credential/upload/profile_image"
 i=A
 h=A
-g="profile_image"
-f=A
+g=A
 s=5
 return A.I(l.AV(),$async$$0)
 case 5:s=4
-return A.I(k.fc(j,i.eU(h.ab([g,f.aC2(b,l.b)],t.N,n)),n).aI(new A.ap8(o,m),t.P).di(new A.ap9(m)),$async$$0)
+return A.I(k.fc(j,i.eU(h.ab(["value",g.aC2(b,l.b)],t.N,n)),n).aI(new A.ap8(o,m),t.P).di(new A.ap9(m)),$async$$0)
 case 4:case 1:return A.C(q,r)}})
 return A.D($async$$0,r)},
 $S:11}
@@ -42420,7 +42418,7 @@ break}o=p.a
 n=t.z
 m=p.b
 s=3
-return A.I(o.at.fc("/credential/update",A.eU(A.ab(["name",a],t.N,n)),n).aI(new A.ap0(o,m),t.P).di(new A.aoR(m)),$async$$1)
+return A.I(o.at.fc("/credential/update/name",A.eU(A.ab(["value",a],t.N,n)),n).aI(new A.ap0(o,m),t.P).di(new A.aoR(m)),$async$$1)
 case 3:case 1:return A.C(q,r)}})
 return A.D($async$$1,r)},
 $S:44}
@@ -42447,7 +42445,7 @@ break}o=p.a
 n=t.z
 m=p.b
 s=3
-return A.I(o.at.fc("/credential/update",A.eU(A.ab(["phone_number",a],t.N,n)),n).aI(new A.aoZ(o,m),t.P).di(new A.ap_(m)),$async$$1)
+return A.I(o.at.fc("/credential/update/phone_number",A.eU(A.ab(["value",a],t.N,n)),n).aI(new A.aoZ(o,m),t.P).di(new A.ap_(m)),$async$$1)
 case 3:case 1:return A.C(q,r)}})
 return A.D($async$$1,r)},
 $S:44}
@@ -42474,7 +42472,7 @@ break}o=p.a
 n=t.z
 m=p.b
 s=3
-return A.I(o.at.fc("/credential/update",A.eU(A.ab(["address",a],t.N,n)),n).aI(new A.aoX(o,m),t.P).di(new A.aoY(m)),$async$$1)
+return A.I(o.at.fc("/credential/update/address",A.eU(A.ab(["value",a],t.N,n)),n).aI(new A.aoX(o,m),t.P).di(new A.aoY(m)),$async$$1)
 case 3:case 1:return A.C(q,r)}})
 return A.D($async$$1,r)},
 $S:44}
@@ -42501,7 +42499,7 @@ break}o=p.a
 n=t.z
 m=p.b
 s=3
-return A.I(o.at.fc("/credential/update",A.eU(A.ab(["username",a],t.N,n)),n).aI(new A.aoV(o,m),t.P).di(new A.aoW(m)),$async$$1)
+return A.I(o.at.fc("/credential/update/username",A.eU(A.ab(["value",a],t.N,n)),n).aI(new A.aoV(o,m),t.P).di(new A.aoW(m)),$async$$1)
 case 3:case 1:return A.C(q,r)}})
 return A.D($async$$1,r)},
 $S:44}
@@ -42527,7 +42525,7 @@ break}o=p.a
 n=t.z
 m=p.b
 s=3
-return A.I(o.at.fc("/credential/update",A.eU(A.ab(["password",a],t.N,n)),n).aI(new A.aoQ(o,m),t.P).di(new A.aoU(m)),$async$$1)
+return A.I(o.at.fc("/credential/update/password",A.eU(A.ab(["value",a],t.N,n)),n).aI(new A.aoQ(o,m),t.P).di(new A.aoU(m)),$async$$1)
 case 3:case 1:return A.C(q,r)}})
 return A.D($async$$1,r)},
 $S:44}
@@ -42554,7 +42552,7 @@ break}o=p.a
 n=t.z
 m=p.b
 s=3
-return A.I(o.at.fc("/credential/update",A.eU(A.ab(["telegram_id",a],t.N,n)),n).aI(new A.aoO(o,m),t.P).di(new A.aoP(m)),$async$$1)
+return A.I(o.at.fc("/credential/update/telegram_id",A.eU(A.ab(["value",a],t.N,n)),n).aI(new A.aoO(o,m),t.P).di(new A.aoP(m)),$async$$1)
 case 3:case 1:return A.C(q,r)}})
 return A.D($async$$1,r)},
 $S:44}
@@ -42840,8 +42838,8 @@ ai(){return new A.VX()}}
 A.VX.prototype={
 ap(){this.aH()
 A.wk("Store Page Loaded")},
-L(a){var s=null,r=A.aG("\u1794\u1789\u17d2\u1785\u17b8\u17a0\u17b6\u1784",s,s,s,s,s,s),q=t.p
-return A.jI(A.kl(A.c([A.em(s,s,B.k0,s,s,new A.as3(),s,s,s),A.bh(s,s,10)],q),s,!0,r),A.eh(A.ei(A.c([A.aG("\u179f\u17bc\u1798\u1785\u17bb\u17c7\u1788\u17d2\u1798\u17c4\u17c7\u178a\u17be\u1798\u17d2\u1794\u17b8\u1794\u1784\u17d2\u1780\u17be\u178f\u17a0\u17b6\u1784",s,s,s,s,s,s)],q),B.y,B.hq,B.G),s,s),s,B.hs,s,s)}}
+L(a){var s=null,r=A.aG("Store",s,s,s,s,s,s),q=t.p
+return A.jI(A.kl(A.c([A.em(s,s,B.k0,s,s,new A.as3(),s,s,s),A.bh(s,s,10)],q),s,s,r),A.eh(A.ei(A.c([A.aG("Please sign in to create a store",s,s,s,s,s,s)],q),B.y,B.hq,B.G),s,s),s,B.hs,s,s)}}
 A.as3.prototype={
 $0(){},
 $S:0}

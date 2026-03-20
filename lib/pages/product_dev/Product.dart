@@ -60,7 +60,7 @@ class _Product_State extends State<Product_> {
   TextEditingController controller_search = TextEditingController();
   ScrollController controller_listview = ScrollController();
 
-  int limit = 100;
+  int limit = 1000;
 
   void init() async {
     await dio

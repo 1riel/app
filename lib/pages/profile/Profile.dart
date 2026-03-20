@@ -145,12 +145,12 @@ class _Profile_PageState extends State<Profile_Page> {
 
                                 await dio
                                     .post(
-                                      '/credential/upload', //
+                                      '/credential/upload/background_image', //
                                       data: FormData.fromMap({
-                                        'background_image': MultipartFile.fromBytes(
+                                        'value': MultipartFile.fromBytes(
                                           await image.readAsBytes(), //
                                           filename: image.name,
-                                        ),
+                                        ), //
                                       }),
                                     )
                                     .then((r) {
@@ -180,7 +180,7 @@ class _Profile_PageState extends State<Profile_Page> {
                           if (access_token != null)
                             IconButton(
                               onPressed: () async {
-                                // upload background image
+                                // upload profile image
                                 final XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
 
                                 // if no image selected
@@ -189,9 +189,9 @@ class _Profile_PageState extends State<Profile_Page> {
                                 // upload image to server
                                 await dio
                                     .post(
-                                      '/credential/upload', //
+                                      '/credential/upload/profile_image', //
                                       data: FormData.fromMap({
-                                        'profile_image': MultipartFile.fromBytes(
+                                        'value': MultipartFile.fromBytes(
                                           await image.readAsBytes(), //
                                           filename: image.name,
                                         ),
@@ -280,8 +280,8 @@ class _Profile_PageState extends State<Profile_Page> {
                                       if (output == null) return;
                                       await dio
                                           .post(
-                                            '/credential/update', //
-                                            data: FormData.fromMap({'name': output}),
+                                            '/credential/update/name', //
+                                            data: FormData.fromMap({'value': output}),
                                           )
                                           .then((r) {
                                             init();
@@ -322,8 +322,8 @@ class _Profile_PageState extends State<Profile_Page> {
                                       if (output == null) return;
                                       await dio
                                           .post(
-                                            '/credential/update', //
-                                            data: FormData.fromMap({'phone_number': output}),
+                                            '/credential/update/phone_number', //
+                                            data: FormData.fromMap({'value': output}),
                                           )
                                           .then((r) {
                                             init();
@@ -363,8 +363,8 @@ class _Profile_PageState extends State<Profile_Page> {
                                       if (output == null) return;
                                       await dio
                                           .post(
-                                            '/credential/update', //
-                                            data: FormData.fromMap({'address': output}),
+                                            '/credential/update/address', //
+                                            data: FormData.fromMap({'value': output}),
                                           )
                                           .then((r) {
                                             init();
@@ -412,8 +412,8 @@ class _Profile_PageState extends State<Profile_Page> {
                                       if (output == null) return;
                                       await dio
                                           .post(
-                                            '/credential/update', //
-                                            data: FormData.fromMap({'username': output}),
+                                            '/credential/update/username', //
+                                            data: FormData.fromMap({'value': output}),
                                           )
                                           .then((r) {
                                             init();
@@ -452,8 +452,8 @@ class _Profile_PageState extends State<Profile_Page> {
                                       if (output == null) return;
                                       await dio
                                           .post(
-                                            '/credential/update', //
-                                            data: FormData.fromMap({'password': output}),
+                                            '/credential/update/password', //
+                                            data: FormData.fromMap({'value': output}),
                                           )
                                           .then((r) {
                                             init();
@@ -493,8 +493,8 @@ class _Profile_PageState extends State<Profile_Page> {
                                       if (output == null) return;
                                       await dio
                                           .post(
-                                            '/credential/update', //
-                                            data: FormData.fromMap({'telegram_id': output}),
+                                            '/credential/update/telegram_id', //
+                                            data: FormData.fromMap({'value': output}),
                                           )
                                           .then((r) {
                                             init();

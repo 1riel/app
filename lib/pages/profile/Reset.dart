@@ -11,7 +11,6 @@ import 'package:app_1riel/utilities/Debug.dart';
 import 'package:app_1riel/themes/Theme_Data.dart';
 
 void main() {
-  usePathUrlStrategy();
   runApp(const App());
 }
 

@@ -9,7 +9,6 @@ import 'package:app_1riel/navigators/Routes.dart';
 import 'package:app_1riel/themes/Theme_Data.dart';
 
 void main() {
-  usePathUrlStrategy();
   runApp(const App());
 }
 
