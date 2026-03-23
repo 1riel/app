@@ -53,7 +53,7 @@ class _Store_PageState extends State<Store_Page> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Please sign in to create a store'), //
+            Text('This is the Store Page'), //
           ],
         ),
       ),

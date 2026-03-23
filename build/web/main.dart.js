@@ -41514,7 +41514,7 @@ A.QU.prototype={
 ap(){this.aG()
 A.w9("Driver Page Loaded")},
 L(a){var s=null,r=A.aM("Driver Page",s,s,s,s,s,s),q=t.p
-return A.l8(A.lU(A.c([A.eA(s,s,B.nF,s,s,new A.akd(),s,s,s),A.bg(s,s,10)],q),s,s,r),A.eL(A.eN(A.c([A.aM("\u179f\u17bc\u1798\u1785\u17bb\u17c7\u1788\u17d2\u1798\u17c4\u17c7\u178a\u17be\u1798\u17d2\u1794\u17b8\u1780\u17d2\u179b\u17b6\u1799\u17a2\u17d2\u1793\u1780\u178a\u17b9\u1780\u1787\u1789\u17d2\u1787\u17bc\u1793",s,s,s,s,s,s)],q),B.z,B.hl,B.H),s,s),s,B.hn)}}
+return A.l8(A.lU(A.c([A.eA(s,s,B.nF,s,s,new A.akd(),s,s,s),A.bg(s,s,10)],q),s,s,r),A.eL(A.eN(A.c([A.aM("This is the Driver Page",s,s,s,s,s,s)],q),B.z,B.hl,B.H),s,s),s,B.hn)}}
 A.akd.prototype={
 $0(){},
 $S:0}
@@ -42291,7 +42291,7 @@ A.Vj.prototype={
 ap(){this.aG()
 A.w9("Store Page Loaded")},
 L(a){var s=null,r=A.aM("Store",s,s,s,s,s,s),q=t.p
-return A.l8(A.lU(A.c([A.eA(s,s,B.nF,s,s,new A.aqV(),s,s,s),A.bg(s,s,10)],q),s,s,r),A.eL(A.eN(A.c([A.aM("Please sign in to create a store",s,s,s,s,s,s)],q),B.z,B.hl,B.H),s,s),s,B.hn)}}
+return A.l8(A.lU(A.c([A.eA(s,s,B.nF,s,s,new A.aqV(),s,s,s),A.bg(s,s,10)],q),s,s,r),A.eL(A.eN(A.c([A.aM("This is the Store Page",s,s,s,s,s,s)],q),B.z,B.hl,B.H),s,s),s,B.hn)}}
 A.aqV.prototype={
 $0(){},
 $S:0}

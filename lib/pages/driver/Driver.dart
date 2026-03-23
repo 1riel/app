@@ -53,7 +53,7 @@ class _Driver_PageState extends State<Driver_Page> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('សូមចុះឈ្មោះដើម្បីក្លាយអ្នកដឹកជញ្ជូន'), //
+            Text('This is the Driver Page'), //
           ],
         ),
       ),
