@@ -52,11 +52,17 @@ class _Reset_PageState extends State<Reset_Page> {
   bool is_new_password_visible = false;
   bool is_confirm_new_password_visible = false;
 
-  TextEditingController controller_telegram_id = TextEditingController();
-  TextEditingController controller_reset_otp = TextEditingController();
-  TextEditingController controller_new_username = TextEditingController();
-  TextEditingController controller_new_password = TextEditingController();
-  TextEditingController controller_confirm_new_password = TextEditingController();
+  final controller_telegram_id = TextEditingController();
+  final controller_reset_otp = TextEditingController();
+  final controller_new_username = TextEditingController();
+  final controller_new_password = TextEditingController();
+  final controller_confirm_new_password = TextEditingController();
+
+  final focus_telegram_id = FocusNode();
+  final focus_reset_otp = FocusNode();
+  final focus_new_username = FocusNode();
+  final focus_new_password = FocusNode();
+  final focus_confirm_new_password = FocusNode();
 
   @override
   void initState() {
@@ -76,139 +82,88 @@ class _Reset_PageState extends State<Reset_Page> {
               width: 600,
               child: Column(
                 children: [
-                  //
                   TextField(
+                    autofocus: true,
+                    focusNode: focus_telegram_id,
                     controller: controller_telegram_id,
                     decoration: InputDecoration(
                       // errorText: controller_telegram_id.text.isNotEmpty ? null : "Telegram ID is required.",
                       labelText: 'Telegram ID',
                       suffixIcon: TextButton(
-                        onPressed: () async {
-                          await launchUrl(Uri.parse('https://t.me/muy_riel_otp_bot'));
-                        },
                         child: Text("Get Telegram ID"),
+                        onPressed: () => on_telegram_id_get(), //
                       ),
                     ),
-                    onChanged: (value) => setState(() {}),
+                    onSubmitted: (v) => FocusScope.of(context).requestFocus(focus_reset_otp),
                   ),
 
                   SizedBox(height: 8),
 
                   TextField(
+                    focusNode: focus_reset_otp,
                     controller: controller_reset_otp,
                     // ? need to update
-                    enabled: controller_telegram_id.text.isNotEmpty,
+                    // enabled: controller_telegram_id.text.isNotEmpty,
                     decoration: InputDecoration(
                       // errorText: controller_reset_otp.text.length == 6 ? null : "OTP must be 6 numbers.",
                       labelText: 'Reset OTP', //
                       suffixIcon: TextButton(
-                        onPressed: () async {
-                          await dio
-                              .post(
-                                '/credential/reset_otp', //
-                                data: FormData.fromMap({
-                                  'telegram_id': controller_telegram_id.text, //
-                                }),
-                              )
-                              .then((r) {
-                                show_snackbar(
-                                  context: context, //
-                                  message: 'OTP sent successfully.',
-                                  color: Colors.green,
-                                );
-                              })
-                              .catchError((e) {
-                                show_snackbar(
-                                  context: context, //
-                                  message: 'Failed to send OTP.',
-                                  color: Colors.red,
-                                );
-                              });
-                        },
                         child: Text("Get Reset OTP"),
+                        onPressed: () => on_request_reset_otp(), //
                       ),
                     ),
-                    onChanged: (value) => setState(() {}),
+                    onSubmitted: (v) => FocusScope.of(context).requestFocus(focus_new_username),
                   ),
 
                   SizedBox(height: 8),
 
                   TextField(
+                    focusNode: focus_new_username,
                     controller: controller_new_username,
-                    enabled: controller_reset_otp.text.length == 6,
+                    // enabled: controller_reset_otp.text.length == 6,
                     decoration: InputDecoration(labelText: 'New Username'),
-                    onChanged: (value) => setState(() {}),
+                    onSubmitted: (v) => FocusScope.of(context).requestFocus(focus_new_password),
                   ),
 
                   SizedBox(height: 8),
 
                   TextField(
+                    focusNode: focus_new_password,
                     controller: controller_new_password,
-                    enabled: controller_reset_otp.text.length == 6,
+                    // enabled: controller_reset_otp.text.length == 6,
                     decoration: InputDecoration(
                       labelText: 'New Password',
                       suffixIcon: IconButton(
-                        onPressed: () {
-                          is_new_password_visible = !is_new_password_visible;
-                          setState(() {});
-                        },
                         icon: !is_new_password_visible ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
+                        onPressed: () => on_new_password_visibility_toggle(), //
                       ),
                     ),
                     obscureText: !is_new_password_visible,
-                    onChanged: (value) => setState(() {}),
+                    onSubmitted: (v) => FocusScope.of(context).requestFocus(focus_confirm_new_password),
                   ),
 
                   SizedBox(height: 8),
 
                   TextField(
+                    focusNode: focus_confirm_new_password,
                     controller: controller_confirm_new_password,
-                    enabled: controller_reset_otp.text.length == 6,
+                    // enabled: controller_reset_otp.text.length == 6,
                     decoration: InputDecoration(
                       labelText: 'Confirm New Password',
                       error: controller_confirm_new_password.text == controller_new_password.text ? null : Text('Passwords do not match.'),
                       suffixIcon: IconButton(
-                        onPressed: () {
-                          is_confirm_new_password_visible = !is_confirm_new_password_visible;
-                          setState(() {});
-                        },
                         icon: !is_confirm_new_password_visible ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
+                        onPressed: () => on_confirm_new_password_visibility_toggle(), //
                       ),
                     ),
                     obscureText: !is_confirm_new_password_visible,
-                    onChanged: (value) => setState(() {}),
+                    onSubmitted: (v) => on_reset(),
                   ),
 
                   SizedBox(height: 8),
 
                   OutlinedButton(
-                    onPressed:
-                        controller_telegram_id.text.isEmpty || //
-                            controller_reset_otp.text.isEmpty || //
-                            controller_new_username.text.isEmpty || //
-                            controller_new_password.text.isEmpty || //
-                            controller_confirm_new_password.text.isEmpty || //
-                            controller_new_password.text != controller_confirm_new_password.text
-                        ? null
-                        : () async {
-                            await dio
-                                .post(
-                                  '/credential/reset', //
-                                  data: FormData.fromMap({
-                                    'telegram_id': controller_telegram_id.text, //
-                                    'reset_otp': controller_reset_otp.text, //
-                                    'new_username': controller_new_username.text, //
-                                    'new_password': controller_new_password.text, //
-                                  }),
-                                )
-                                .then((r) {
-                                  show_snackbar(context: context, message: 'Reset Successful', color: Colors.green);
-                                  Navigator.of(context).pop(true); // reset successful
-                                })
-                                .catchError((e) {
-                                  show_snackbar(context: context, message: 'Reset Failed', color: Colors.red);
-                                });
-                          },
+                    onPressed: on_reset_button_enabled() ? null : () => on_reset(), //
                     child: Text('Reset'),
                   ),
                 ],
@@ -219,25 +174,92 @@ class _Reset_PageState extends State<Reset_Page> {
       ),
     );
   }
-}
 
-void show_snackbar({
-  required BuildContext context, //
-  required String message, //
-  required Color color, //
-}) {
-  ScaffoldMessenger.of(context)
-    ..hideCurrentSnackBar()
-    ..showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            Icon(Icons.info_outline, color: Colors.white),
-            SizedBox(width: 8),
-            Text(message),
-          ],
+  void on_confirm_new_password_visibility_toggle() {
+    is_confirm_new_password_visible = !is_confirm_new_password_visible;
+    setState(() {});
+  }
+
+  void on_new_password_visibility_toggle() {
+    is_new_password_visible = !is_new_password_visible;
+    setState(() {});
+  }
+
+  void on_telegram_id_get() async {
+    await launchUrl(Uri.parse('https://t.me/muy_riel_otp_bot'));
+  }
+
+  void on_request_reset_otp() async {
+    await dio
+        .post(
+          '/credential/reset_otp', //
+          data: FormData.fromMap({
+            'telegram_id': controller_telegram_id.text, //
+          }),
+        )
+        .then((r) {
+          show_snackbar(
+            context: context, //
+            message: 'OTP sent successfully.',
+            color: Colors.green,
+          );
+        })
+        .catchError((e) {
+          show_snackbar(
+            context: context, //
+            message: 'Failed to send OTP.',
+            color: Colors.red,
+          );
+        });
+  }
+
+  bool on_reset_button_enabled() {
+    return controller_telegram_id.text.isNotEmpty && //
+        controller_reset_otp.text.length == 6 && //
+        controller_new_username.text.isNotEmpty && //
+        controller_new_password.text.isNotEmpty && //
+        controller_confirm_new_password.text.isNotEmpty && //
+        controller_new_password.text == controller_confirm_new_password.text;
+  }
+
+  void on_reset() async {
+    await dio
+        .post(
+          '/credential/reset', //
+          data: FormData.fromMap({
+            'telegram_id': controller_telegram_id.text, //
+            'reset_otp': controller_reset_otp.text, //
+            'new_username': controller_new_username.text, //
+            'new_password': controller_new_password.text, //
+          }),
+        )
+        .then((r) {
+          show_snackbar(context: context, message: 'Reset Successful', color: Colors.green);
+          Navigator.of(context).pop(true); // reset successful
+        })
+        .catchError((e) {
+          show_snackbar(context: context, message: 'Reset Failed', color: Colors.red);
+        });
+  }
+
+  void show_snackbar({
+    required BuildContext context, //
+    required String message, //
+    required Color color, //
+  }) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: Row(
+            children: [
+              Icon(Icons.info_outline, color: Colors.white),
+              SizedBox(width: 8),
+              Text(message),
+            ],
+          ),
+          backgroundColor: color,
         ),
-        backgroundColor: color,
-      ),
-    );
+      );
+  }
 }

@@ -1,5 +1,5 @@
-import 'package:app_1riel/pages/product_dev/Product.dart';
-import 'package:app_1riel/pages/product_dev/Search.dart';
+import 'package:app_1riel/pages/product/stage/Product.dart';
+import 'package:app_1riel/pages/product/stage/Search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
@@ -22,9 +22,9 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: '1riel.com',
       theme: Theme_Data.get_theme(),
-      // home: Main_Navigator_Page(index: 0), //
+      home: Main_Navigator_Page(index: 0), //
       // home: Search_(), //
-      home: Product_(), //
+      // home: Product_(), //
       routes: Routes.routes,
       debugShowCheckedModeBanner: false,
     );

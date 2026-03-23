@@ -248,6 +248,18 @@ class _Profile_PageState extends State<Profile_Page> {
                     ),
                   ],
 
+                  // sign in and sign up buttons
+                  if (access_token != null) ...[
+                    SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        OutlinedButton(onPressed: () {}, child: Text('Be Store')), //
+                        OutlinedButton(onPressed: () {}, child: Text('Be Driver')), //
+                      ],
+                    ),
+                  ],
+
                   SizedBox(height: 8),
 
                   ExpansionTile(

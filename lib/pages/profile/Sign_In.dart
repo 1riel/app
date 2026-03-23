@@ -46,8 +46,11 @@ class _Sign_In_PageState extends State<Sign_In_Page> {
 
   bool is_password_visible = false;
 
-  TextEditingController controller_username = TextEditingController();
-  TextEditingController controller_password = TextEditingController();
+  final controller_username = TextEditingController();
+  final controller_password = TextEditingController();
+
+  final focus_username = FocusNode();
+  final focus_password = FocusNode();
 
   FlutterSecureStorage secure_storage = FlutterSecureStorage();
 
@@ -69,63 +72,35 @@ class _Sign_In_PageState extends State<Sign_In_Page> {
               width: 600,
               child: Column(
                 children: [
-                  //
                   TextField(
+                    autofocus: true,
+                    focusNode: focus_username,
                     controller: controller_username,
                     decoration: InputDecoration(labelText: 'Username'),
+                    onSubmitted: (_) => FocusScope.of(context).requestFocus(focus_password),
                   ),
 
                   SizedBox(height: 8),
-                  //
+
                   TextField(
+                    focusNode: focus_password,
                     controller: controller_password,
                     decoration: InputDecoration(
                       labelText: 'Password',
                       suffixIcon: IconButton(
-                        onPressed: () {
-                          is_password_visible = !is_password_visible;
-                          setState(() {});
-                        },
                         icon: Icon(!is_password_visible ? Icons.visibility : Icons.visibility_off),
+                        onPressed: () => on_password_visibility_toggle(), //
                       ),
                     ),
                     obscureText: !is_password_visible,
+                    onSubmitted: (_) => on_sign_in(), //
                   ),
 
                   SizedBox(height: 8),
-                  //
+
                   OutlinedButton(
-                    onPressed: () async {
-                      await dio
-                          .post(
-                            '/credential/signin', //
-                            data: FormData.fromMap({
-                              'username': controller_username.text, //
-                              'password': controller_password.text, //
-                            }),
-                          )
-                          .then((r) async {
-                            show_snackbar(
-                              context: context, //
-                              message: 'Sign In Successful',
-                              color: Colors.green,
-                            );
-                            debug(r.data['access_token']);
-                            await secure_storage.write(
-                              key: 'access_token', //
-                              value: r.data['access_token'],
-                            );
-                            Navigator.pop(context); //
-                          })
-                          .catchError((e) {
-                            show_snackbar(
-                              context: context, //
-                              message: 'Sign In Failed',
-                              color: Colors.red,
-                            );
-                          });
-                    },
                     child: Text('Sign In'),
+                    onPressed: () => on_sign_in(), //
                   ),
                 ],
               ),
@@ -134,6 +109,42 @@ class _Sign_In_PageState extends State<Sign_In_Page> {
         ),
       ),
     );
+  }
+
+  void on_password_visibility_toggle() {
+    is_password_visible = !is_password_visible;
+    setState(() {});
+  }
+
+  void on_sign_in() async {
+    await dio
+        .post(
+          '/credential/signin', //
+          data: FormData.fromMap({
+            'username': controller_username.text, //
+            'password': controller_password.text, //
+          }),
+        )
+        .then((r) async {
+          show_snackbar(
+            context: context, //
+            message: 'Sign In Successful',
+            color: Colors.green,
+          );
+          debug(r.data['access_token']);
+          await secure_storage.write(
+            key: 'access_token', //
+            value: r.data['access_token'],
+          );
+          Navigator.pop(context); //
+        })
+        .catchError((e) {
+          show_snackbar(
+            context: context, //
+            message: 'Sign In Failed',
+            color: Colors.red,
+          );
+        });
   }
 }
 
