@@ -1,3 +1,4 @@
+name: '1riel.com'
 version: '1.0.0'
 
 services:
@@ -10,6 +11,8 @@ services:
       - .env
     ports:
       - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
     restart: unless-stopped
 
   # live logs
@@ -24,6 +27,8 @@ services:
     ports:
       - "9000:9000"
       - "9001:9001"
+    volumes:
+      - minio_data:/data
     command: server /data --console-address ":9001"
     restart: unless-stopped
   
@@ -72,49 +77,10 @@ services:
       - "80:80"
     restart: unless-stopped
   
-  # live logs
-  # docker logs --follow flutter
+# live logs
+# docker logs --follow flutter
 
-  # server:
-  #   # backend server
-  #   build:
-  #     context: .
-  #     dockerfile: services/server/Dockerfile
-  #   container_name: server
-  #   env_file:
-  #     - .env
-  #   ports:
-  #     - "8000:8000"
-  #   restart: unless-stopped
 
-  # flutter:
-  #   # frontend client
-  #   image: nginx:latest
-  #   container_name: flutter
-  #   env_file:
-  #     - .env
-  #   ports:
-  #     - "8080:80"
-  #   restart: unless-stopped
-  
-  # volumes:
-  #   minio_data:
-  
-# minio:
-# object storage
-
-# server:
-# backend server
-# fastapi:
-# backend server
-
-# nginx:
-# reverse proxy
-# flutter:
-# frontend client
-
-# telegram_bot:
-# telegram bot
-
-# volumes:
-#   minio_data:
+volumes:
+  mongo_data:
+  minio_data:
