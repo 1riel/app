@@ -1,9 +1,9 @@
 import os
 import re
 
-# read client/pubspec.yaml
+# read pubspec.yaml
 content = ""
-with open("client/pubspec.yaml", "r", encoding="utf-8") as f:
+with open("pubspec.yaml", "r", encoding="utf-8") as f:
     content = f.read()
 
 
@@ -23,7 +23,7 @@ if build_match:
     build_num = int(build_match.group(4))
     new_build_num = build_num + 1
 
-    # update the build number in client/pubspec.yaml content
+    # update the build number in pubspec.yaml content
     new_content = re.sub(
         r"version: (\d+)\.(\d+)\.(\d+)\+(\d+)",
         f"version: {build_match.group(1)}.{build_match.group(2)}.{build_match.group(3)}+{new_build_num}",
@@ -32,7 +32,7 @@ if build_match:
     # print(new_content)
 
     # write back to env.dart
-    with open("client/pubspec.yaml", "w", encoding="utf-8") as f:
+    with open("pubspec.yaml", "w", encoding="utf-8") as f:
         f.write(new_content)
 
 
@@ -44,7 +44,7 @@ if build_match:
 # os.system("flutter build web --release --base-href /repo_1riel_frontend/")
 
 # os.system("flutter build web --release --base-href /")
-os.system("cd client && flutter build web --release --base-href /")
+os.system("flutter build web --release --base-href /")
 
 
 # git commit and push

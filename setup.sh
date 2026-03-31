@@ -31,3 +31,15 @@ pip install onnxruntime
 pip install jupyter
 pip install paramiko
 
+
+
+# 
+SERVICE_NAME=1riel_telegram
+systemctl stop ${SERVICE_NAME}.service
+systemctl disable ${SERVICE_NAME}.service
+rm /etc/systemd/system/${SERVICE_NAME}.service
+systemctl daemon-reexec
+systemctl daemon-reload
+
+# check port
+netstat -tuln | grep 9000
