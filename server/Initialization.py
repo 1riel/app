@@ -12,8 +12,8 @@ if not s3.bucket_exists(MINIO_BUCKET_PRIVATE):
 
 # Check if bucket has no policy before setting it
 try:
-    existing_policy = s3.get_bucket_policy(MINIO_BUCKET_PUBLIC)
-    if not existing_policy:
+    policy = s3.get_bucket_policy(MINIO_BUCKET_PUBLIC)
+    if not policy:
         raise ValueError("No policy found")
 except:
     policy = f"""{{

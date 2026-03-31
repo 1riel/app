@@ -17,12 +17,12 @@ from routers.Credential import router as credential
 from routers.Home import router as home
 from routers.Store import router as store
 from routers.CRUD import router as crud
+import Initialization
 
 
 app = FastAPI(title=TITLE, version="1.0.0", docs_url="/")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
-os.system("python server/Initialization.py")
 
 app.include_router(store, prefix="/store", tags=["Store"])
 app.include_router(credential, prefix="/credential", tags=["Credential"])
