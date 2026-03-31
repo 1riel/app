@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:app_1riel/pages/profile/Update_Data.dart';
 import 'package:app_1riel/Environment.dart';
@@ -39,6 +40,8 @@ class Profile_Page extends StatefulWidget {
 }
 
 class _Profile_PageState extends State<Profile_Page> {
+  String VERSION = '0.0.0+0';
+
   FlutterSecureStorage secure_storage = FlutterSecureStorage();
   String? access_token;
 
@@ -68,6 +71,9 @@ class _Profile_PageState extends State<Profile_Page> {
   }
 
   void init() async {
+    final info = await PackageInfo.fromPlatform();
+    VERSION = '${info.version}+${info.buildNumber}';
+
     name = null;
     phone_number = null;
     address = null;
@@ -109,7 +115,22 @@ class _Profile_PageState extends State<Profile_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Profile")), //
+      appBar: AppBar(
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Profile'), //
+            Text(
+              VERSION,
+              style: const TextStyle(
+                fontSize: 12, //
+                color: Colors.blue,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      ), //
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(top: 0, left: 8, right: 8, bottom: 0),
