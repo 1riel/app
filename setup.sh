@@ -1,3 +1,6 @@
+flutter create client --platforms=web
+
+
 # windows
 python -m venv .venv
 .venv\Scripts\activate

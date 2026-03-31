@@ -1,86 +1,86 @@
-name: '1riel.com'
+name: 1riel
 version: '1.0.0'
 
 services:
 
-  mongodb:
-    # database
-    image: mongo:latest
-    container_name: mongodb
-    env_file:
-      - .env
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo_data:/data/db
-    restart: unless-stopped
+    mongodb:
+        # database
+        image: mongo:latest
+        container_name: mongodb
+        env_file:
+            - .env
+        ports:
+            - "27017:27017"
+        volumes:
+            - mongo_data:/data/db
+        restart: unless-stopped
 
-  # live logs
-  # docker logs --follow mongodb
+    # live logs
+    # docker logs --follow mongodb
 
-  minio:
-    # object storage
-    image: minio/minio:latest
-    container_name: minio
-    env_file:
-      - .env
-    ports:
-      - "9000:9000"
-      - "9001:9001"
-    volumes:
-      - minio_data:/data
-    command: server /data --console-address ":9001"
-    restart: unless-stopped
-  
-  # live logs
-  # docker logs --follow minio
+    minio:
+        # object storage
+        image: minio/minio:latest
+        container_name: minio
+        env_file:
+            - .env
+        ports:
+            - "9000:9000"
+            - "9001:9001"
+        volumes:
+            - minio_data:/data
+        command: server /data --console-address ":9001"
+        restart: unless-stopped
+    
+    # live logs
+    # docker logs --follow minio
 
 
-  telegram:
-    # telegram bot
-    build:
-      context: server # path to backend server
-      dockerfile: /services/telegram/Dockerfile
-    container_name: telegram
-    env_file:
-      - .env
-    restart: unless-stopped
+    telegram:
+        # telegram bot
+        build:
+            context: server # path to backend server
+            dockerfile: /services/telegram/Dockerfile
+        container_name: telegram
+        env_file:
+            - .env
+        restart: unless-stopped
 
-  # live logs
-  # docker logs --follow telegram
-  
-  server:
-    # backend server
-    build:
-      context: server # path to backend server
-      dockerfile: Dockerfile
-    container_name: server
-    env_file:
-      - .env
-    ports:
-      - "8000:8000"
-    restart: unless-stopped
+    # live logs
+    # docker logs --follow telegram
+    
+    server:
+        # backend server
+        build:
+            context: server # path to backend server
+            dockerfile: Dockerfile
+        container_name: server
+        env_file:
+            - .env
+        ports:
+            - "8000:8000"
+        restart: unless-stopped
 
-  # live logs
-  # docker logs --follow telegram
-  
-  
-  client:
-    # frontend client
-    build:
-      context: client # path to frontend client
-      dockerfile: Dockerfile
-    container_name: client
-    env_file:
-      - .env
-    ports:
-      - "80:80"
-    restart: unless-stopped
-  
+    # live logs
+    # docker logs --follow telegram
+    
+    
+    client:
+        # frontend client
+        build:
+            context: client # path to frontend client
+            dockerfile: Dockerfile
+        container_name: client
+        env_file:
+            - .env
+        ports:
+            - "80:80"
+        restart: unless-stopped
+# cd client && flutter build web --release
 # live logs
 # docker logs --follow flutter
 
 
 volumes:
-  mongo_data:
-  minio_data:
+    mongo_data:
+    minio_data:
