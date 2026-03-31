@@ -17,8 +17,10 @@ from routers.Credential import router as credential
 from routers.Home import router as home
 from routers.Store import router as store
 from routers.CRUD import router as crud
-import Initialization
 
+
+# initialize database and storage
+import Initialization
 
 app = FastAPI(title=TITLE, version="1.0.0", docs_url="/")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
@@ -52,10 +54,10 @@ if __name__ == "__main__":
         port=8000,
         reload=True,
         reload_includes=[
-            "routers/*.py",
-            "utilities/*.py",
-            "Application.py",
-            "Environment.py",
+            "server/routers/*.py",
+            "server/utilities/*.py",
+            "server/Application.py",
+            "server/Environment.py",
         ],
         reload_excludes=["__pycache__"],
     )
