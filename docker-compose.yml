@@ -12,8 +12,6 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
-    networks:
-      - network
     restart: unless-stopped
 
   # live logs
@@ -31,8 +29,6 @@ services:
     volumes:
       - minio_data:/data
     command: server /data --console-address ":9001"
-    networks:
-      - network
     restart: unless-stopped
   
   # live logs
@@ -47,8 +43,6 @@ services:
     container_name: telegram
     env_file:
       - .env
-    networks:
-      - network
     restart: unless-stopped
 
   # live logs
@@ -64,8 +58,6 @@ services:
       - .env
     ports:
       - "8000:8000"
-    networks:
-      - network
     restart: unless-stopped
 
   # live logs
@@ -82,8 +74,6 @@ services:
       - .env
     ports:
       - "80:80"
-    networks:
-      - network
     restart: unless-stopped
 # cd client && flutter build web --release
 # live logs
