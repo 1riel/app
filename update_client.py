@@ -10,7 +10,6 @@ load_dotenv(".env")
 
 # build client
 
-
 # read pubspec.yaml
 content = ""
 with open("client/pubspec.yaml", "r", encoding="utf-8") as f:
