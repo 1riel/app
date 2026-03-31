@@ -1,14 +1,13 @@
 # 
 .*/
-
 .*
+
 !.gitignore
 !.dockerignore
 
 
-
-**/z*
 **/z*/
+**/z*
 
 # 
 __pycache__/

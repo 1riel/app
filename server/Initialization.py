@@ -3,11 +3,14 @@ from Environment import *
 
 
 # create bucket
-if not s3.bucket_exists(MINIO_BUCKET_PUBLIC):
-    s3.make_bucket(MINIO_BUCKET_PUBLIC)
+try:
+    if not s3.bucket_exists(MINIO_BUCKET_PUBLIC):
+        s3.make_bucket(MINIO_BUCKET_PUBLIC)
 
-if not s3.bucket_exists(MINIO_BUCKET_PRIVATE):
-    s3.make_bucket(MINIO_BUCKET_PRIVATE)
+    if not s3.bucket_exists(MINIO_BUCKET_PRIVATE):
+        s3.make_bucket(MINIO_BUCKET_PRIVATE)
+except Exception as e:
+    print(f"Storage initialization error.")
 
 
 # Check if bucket has no policy before setting it
@@ -35,3 +38,8 @@ except:
     }}"""
 
     s3.set_bucket_policy(MINIO_BUCKET_PUBLIC, policy)
+
+# TODO: add sample data to storage
+
+
+# TODO: create collection and index

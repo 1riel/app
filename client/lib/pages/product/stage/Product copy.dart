@@ -182,7 +182,7 @@ class _ProductPageState extends State<ProductPage> {
       width: 100,
       height: 100,
       color: Colors.grey[300],
-      child: imageUrl != null ? Image.network('$API_HOST/public/$imageUrl?w=100&h=100', fit: BoxFit.cover, errorBuilder: (_, __, ___) => const Icon(Icons.broken_image, size: 100)) : const Icon(Icons.image_not_supported, size: 100),
+      child: imageUrl != null ? Image.network('$API_HOST/public/$imageUrl?w=100&h=100', fit: BoxFit.cover, errorBuilder: (_, _, _) => const Icon(Icons.broken_image, size: 100)) : const Icon(Icons.image_not_supported, size: 100),
     );
   }
 

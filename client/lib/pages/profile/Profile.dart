@@ -13,7 +13,6 @@ import 'package:app_1riel/themes/Theme_Data.dart';
 import 'package:app_1riel/navigators/Main_Drawer.dart';
 
 void main() {
-  usePathUrlStrategy();
   runApp(const App());
 }
 

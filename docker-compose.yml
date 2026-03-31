@@ -14,8 +14,7 @@ services:
       - mongo_data:/data/db
     restart: unless-stopped
 
-  # live logs
-  # docker logs --follow mongodb
+
 
   minio:
     # object storage
@@ -31,8 +30,7 @@ services:
     command: server /data --console-address ":9001"
     restart: unless-stopped
   
-  # live logs
-  # docker logs --follow minio
+
 
 
   telegram:
@@ -45,8 +43,7 @@ services:
       - .env
     restart: unless-stopped
 
-  # live logs
-  # docker logs --follow telegram
+
   
   server:
     # backend server
@@ -60,8 +57,6 @@ services:
       - "8000:8000"
     restart: unless-stopped
 
-  # live logs
-  # docker logs --follow telegram
   
   
   client:
@@ -75,15 +70,9 @@ services:
     ports:
       - "80:80"
     restart: unless-stopped
-# cd client && flutter build web --release
-# live logs
-# docker logs --follow flutter
+
 
 
 volumes:
   mongo_data:
   minio_data:
-
-networks:
-  default:
-    name: network

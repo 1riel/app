@@ -20,6 +20,7 @@ from routers.CRUD import router as crud
 
 
 # initialize database and storage
+# NOTE: must start mongodb and minio service
 import Initialization
 
 app = FastAPI(title=TITLE, version="1.0.0", docs_url="/")
