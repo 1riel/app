@@ -14,9 +14,9 @@ pip install uvicorn
 pip install pymongo
 pip install minio
 pip install requests
-pip install ipdb
 pip install python-dotenv
 
+pip install ipdb
 pip install pillow
 pip install matplotlib
 pip install python-telegram-bot
@@ -33,13 +33,3 @@ pip install paramiko
 
 
 
-# 
-SERVICE_NAME=1riel_telegram
-systemctl stop ${SERVICE_NAME}.service
-systemctl disable ${SERVICE_NAME}.service
-rm /etc/systemd/system/${SERVICE_NAME}.service
-systemctl daemon-reexec
-systemctl daemon-reload
-
-# check port
-netstat -tuln | grep 9000

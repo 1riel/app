@@ -1,1 +1,0 @@
-git clone https://github.com/1riel/app.git /root/1riel
