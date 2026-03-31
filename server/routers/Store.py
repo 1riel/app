@@ -20,7 +20,7 @@ router = APIRouter()
 
 
 @router.get("/ping", deprecated=0)
-async def _():
+async def Hello():
     return "pong"
 
 
