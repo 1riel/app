@@ -37,7 +37,6 @@ command = [
     # "echo 'Current working directory: ' && pwd",
     "git pull",
     # "echo 'Pulling latest code from GitHub... Done!'",
-    # "systemctl restart 1riel_server.service",
     "docker-compose -f docker-compose.yml up -d --build server",
     # "echo 'Restarting server... Done!'",
 ]

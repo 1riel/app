@@ -40,14 +40,4 @@ if build_match:
 # os.system("flutter clean")
 
 # build web release
-# os.system("flutter build web --release")
-# os.system("flutter build web --release --base-href /repo_1riel_frontend/")
-
-# os.system("flutter build web --release --base-href /")
 os.system("flutter build web --release --base-href /")
-
-
-# git commit and push
-# os.system("git add .")
-# os.system(f'git commit -m "update"')
-# os.system("git push")
