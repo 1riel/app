@@ -22,6 +22,8 @@ from routers.CRUD import router as crud
 app = FastAPI(title=TITLE, version="1.0.0", docs_url="/")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
+os.system("python server/Initialization.py")
+
 app.include_router(store, prefix="/store", tags=["Store"])
 app.include_router(credential, prefix="/credential", tags=["Credential"])
 app.include_router(product, prefix="/product", tags=["Product"])
