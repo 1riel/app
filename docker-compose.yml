@@ -39,7 +39,7 @@ services:
     # telegram bot
     build:
       context: server # path to backend server
-      dockerfile: /services/telegram/Dockerfile
+      dockerfile: services/telegram/Dockerfile
     container_name: telegram
     env_file:
       - .env
