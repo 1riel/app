@@ -19,6 +19,11 @@ from utilities.Bearer import bearer as oa
 router = APIRouter()
 
 
+@router.get("/ping", deprecated=0)
+async def _():
+    return "pong"
+
+
 @router.post("/create", deprecated=0)
 async def _(
     #

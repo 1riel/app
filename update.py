@@ -33,11 +33,12 @@ client.connect(
 
 # single line commands
 command = [
-    "cd /root/1riel_server",
+    "cd /root/1riel",
     # "echo 'Current working directory: ' && pwd",
     "git pull",
     # "echo 'Pulling latest code from GitHub... Done!'",
-    "systemctl restart 1riel_server.service",
+    # "systemctl restart 1riel_server.service",
+    "docker-compose -f 'docker-compose.yml' up -d -- build 'server'",
     # "echo 'Restarting server... Done!'",
 ]
 
