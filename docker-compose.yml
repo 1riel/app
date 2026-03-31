@@ -1,0 +1,120 @@
+version: '1.0.0'
+
+services:
+
+  mongodb:
+    # database
+    image: mongo:latest
+    container_name: mongodb
+    env_file:
+      - .env
+    ports:
+      - "27017:27017"
+    restart: unless-stopped
+
+  # live logs
+  # docker logs --follow mongodb
+
+  minio:
+    # object storage
+    image: minio/minio:latest
+    container_name: minio
+    env_file:
+      - .env
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+  
+  # live logs
+  # docker logs --follow minio
+
+
+  telegram:
+    # telegram bot
+    build:
+      context: server # path to backend server
+      dockerfile: /services/telegram/Dockerfile
+    container_name: telegram
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  # live logs
+  # docker logs --follow telegram
+  
+  server:
+    # backend server
+    build:
+      context: server # path to backend server
+      dockerfile: Dockerfile
+    container_name: server
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  # live logs
+  # docker logs --follow telegram
+  
+  
+  client:
+    # frontend client
+    build:
+      context: client # path to frontend client
+      dockerfile: Dockerfile
+    container_name: client
+    env_file:
+      - .env
+    ports:
+      - "80:80"
+    restart: unless-stopped
+  
+  # live logs
+  # docker logs --follow flutter
+
+  # server:
+  #   # backend server
+  #   build:
+  #     context: .
+  #     dockerfile: services/server/Dockerfile
+  #   container_name: server
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - "8000:8000"
+  #   restart: unless-stopped
+
+  # flutter:
+  #   # frontend client
+  #   image: nginx:latest
+  #   container_name: flutter
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - "8080:80"
+  #   restart: unless-stopped
+  
+  # volumes:
+  #   minio_data:
+  
+# minio:
+# object storage
+
+# server:
+# backend server
+# fastapi:
+# backend server
+
+# nginx:
+# reverse proxy
+# flutter:
+# frontend client
+
+# telegram_bot:
+# telegram bot
+
+# volumes:
+#   minio_data:
