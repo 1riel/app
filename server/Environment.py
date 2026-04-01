@@ -15,7 +15,7 @@ TITLE = os.getenv("TITLE")
 
 
 # ? Database configuration for the application
-MONGO_HOST = os.getenv("MONGO_HOST") if os.path.isfile("/.dockerenv") else "localhost"
+MONGO_HOST = os.getenv("MONGO_HOST") if not os.path.isfile("/.dockerenv") else "minio"
 MONGO_PORT = 27017
 MONGO_INITDB_ROOT_USERNAME = os.getenv("MONGO_INITDB_ROOT_USERNAME")
 MONGO_INITDB_ROOT_PASSWORD = os.getenv("MONGO_INITDB_ROOT_PASSWORD")
@@ -25,7 +25,7 @@ MONGO_URL = f"mongodb://{MONGO_INITDB_ROOT_USERNAME}:{MONGO_INITDB_ROOT_PASSWORD
 
 
 # ? MinIO configuration for the application
-MINIO_HOST = os.getenv("MINIO_HOST") if os.path.isfile("/.dockerenv") else "localhost"
+MINIO_HOST = os.getenv("MINIO_HOST") if not os.path.isfile("/.dockerenv") else "minio"
 MINIO_PORT = 9000
 MINIO_CONSOLE_PORT = 9001
 MINIO_ROOT_USER = os.getenv("MINIO_ROOT_USER")
