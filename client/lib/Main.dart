@@ -10,7 +10,6 @@ import 'package:app_1riel/pages/product/Product.dart';
 import 'package:app_1riel/navigators/Main_Navigator.dart';
 
 void main() {
-  usePathUrlStrategy();
   runApp(const App());
 }
 
