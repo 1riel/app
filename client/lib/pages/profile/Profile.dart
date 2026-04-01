@@ -507,38 +507,6 @@ class _Profile_PageState extends State<Profile_Page> {
                           Text("Telegram ID: ", style: TextStyle(fontWeight: FontWeight.bold)),
                           Text(telegram_id ?? ""),
                           Spacer(),
-                          if (access_token != null)
-                            IconButton(
-                              onPressed: () {
-                                Navigator.of(context)
-                                    .push(
-                                      MaterialPageRoute(
-                                        builder: (context) => Update_Profile_Page(
-                                          title: 'Telegram ID', //
-                                          input: telegram_id ?? '',
-                                          keyboard_type: TextInputType.number,
-                                        ),
-                                      ),
-                                    )
-                                    .then((output) async {
-                                      debug(output);
-                                      if (output == null) return;
-                                      await dio
-                                          .post(
-                                            '/credential/update/telegram_id', //
-                                            data: FormData.fromMap({'value': output}),
-                                          )
-                                          .then((r) {
-                                            init();
-                                            show_snackbar(context: context, message: 'Update Success', color: Colors.green);
-                                          })
-                                          .catchError((e) {
-                                            show_snackbar(context: context, message: 'Update Fail', color: Colors.red);
-                                          });
-                                    });
-                              },
-                              icon: Icon(Icons.edit),
-                            ),
                         ],
                       ),
                     ],

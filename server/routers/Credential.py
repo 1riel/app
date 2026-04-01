@@ -296,6 +296,7 @@ def update_number(key):
 COLLUMN_STRINGS = [
     "name",
     "address",
+    "phone_number",
     # "store_id",
     # "driver_id",
 ]
@@ -303,7 +304,7 @@ for key in COLLUMN_STRINGS:
     router.post(f"/update/{key}", deprecated=0)(update_string(key))
 
 COLLUMN_NUMBERS = [
-    "phone_number",
+    # "phone_number",
 ]
 for key in COLLUMN_NUMBERS:
     router.post(f"/update/{key}", deprecated=0)(update_number(key))
