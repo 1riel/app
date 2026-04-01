@@ -43298,7 +43298,7 @@ $S:9}
 A.ace.prototype={}
 A.ahL.prototype={}
 A.P9.prototype={
-K(a){var s,r=null,q=A.kk(r,r,r,A.aG("Telegram Login",r,r,r,r,r,r)),p=new A.a6P('<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <title>Login with Telegram</title>\n    <style>\n      body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }\n    </style>\n  </head>\n  <body>\n    <script\n      async\n      src="https://telegram.org/js/telegram-widget.js?23"\n      data-telegram-login="muy_riel_otp_bot"\n      data-size="large"\n      data-radius="0"\n      data-auth-url="https://8000.1riel.com/auth/telegram"\n      data-request-access="write"\n    ></script>\n  </body>\n</html>\n')
+K(a){var s,r=null,q=A.kk(r,r,r,A.aG("Telegram Login",r,r,r,r,r,r)),p=new A.a6P('<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <title>Login with Telegram</title>\n    <style>\n      body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }\n    </style>\n  </head>\n  <body>\n    <script\n      async\n      src="https://telegram.org/js/telegram-widget.js?23"\n      data-telegram-login="muy_riel_otp_bot"\n      data-size="large"\n      data-radius="0"\n      data-auth-url="https://www.1riel.com/auth/telegram"\n      data-request-access="write"\n    ></script>\n  </body>\n</html>\n')
 p.e=null
 s=new A.a6Q(!0,!0,!0)
 s.ea=0

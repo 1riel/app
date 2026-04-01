@@ -37,7 +37,7 @@ class TelegramLoginWebView extends StatelessWidget {
       data-telegram-login="muy_riel_otp_bot"
       data-size="large"
       data-radius="0"
-      data-auth-url="https://1riel.github.io/app/auth/telegram"
+      data-auth-url="https://www.1riel.com/auth/telegram"
       data-request-access="write"
     ></script>
   </body>
