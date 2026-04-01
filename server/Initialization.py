@@ -4,14 +4,13 @@ import sys
 
 sys.path.append(os.getcwd())
 
+from glob import glob
 
 from utilities.Database import database as db
 from utilities.Storage import storage as s3
+from utilities.Converter import converter as cvt
 from Environment import *
 
-
-# initialize database and storage
-# NOTE: must start mongodb and minio service
 
 # create buckets
 if not s3.bucket_exists(MINIO_BUCKET_PUBLIC):
@@ -40,9 +39,16 @@ policy = f"""{{
     ]
 }}"""
 
+
 s3.set_bucket_policy(MINIO_BUCKET_PUBLIC, policy)
+
 
 # TODO: add sample data to storage
 
 
-# TODO: create collection and index
+# read all file
+files = glob("assets/*")
+for f in files:
+    s3.fput_object(MINIO_BUCKET_PUBLIC, f.replace("\\", "/"), f.replace("\\", "/"))
+    cvt.file_to_thumbnail(f.replace("\\", "/"), 100)
+    cvt.file_to_thumbnail(f.replace("\\", "/"), 200)
