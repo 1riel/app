@@ -3,8 +3,6 @@ import sys
 
 sys.path.append(os.getcwd())
 
-from utilities.Debug import Debug
-
 
 from minio import Minio
 
@@ -20,6 +18,7 @@ class Storage(Minio):
             secure=False,
         )
 
+    # check if object exists in bucket
     def object_exists(self, bucket_name: str, object_name: str) -> bool:
         try:
             self.stat_object(bucket_name, object_name)

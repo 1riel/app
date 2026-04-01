@@ -214,8 +214,8 @@ def upload_image(key):
                 {"$set": {key: new_image_name, "updated_at": datetime.now()}},
             )
 
-            cvt.to_thumbnail(f"images/{new_image_name}", 100)
-            cvt.to_thumbnail(f"images/{new_image_name}", 200)
+            cvt.storage_to_thumbnail(f"images/{new_image_name}", 100)
+            cvt.storage_to_thumbnail(f"images/{new_image_name}", 200)
             return 1
         except Exception:
             return Response(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
