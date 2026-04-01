@@ -3,10 +3,13 @@ FROM nginx:stable-alpine
 # Remove default nginx website
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy Flutter web build
+# remove previous build files
+RUN rm -rf /usr/share/nginx/html/*
+
+# copy new build files
 COPY client/build/web /usr/share/nginx/html
 
-# Expose port 80
+# expose port 80
 EXPOSE 80
 
 # Start Nginx
