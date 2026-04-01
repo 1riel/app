@@ -19,10 +19,6 @@ from routers.Store import router as store
 from routers.CRUD import router as crud
 
 
-# initialize database and storage
-# NOTE: must start mongodb and minio service
-import Initialization
-
 app = FastAPI(title=TITLE, version="1.0.0", docs_url="/")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 

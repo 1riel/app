@@ -24,7 +24,6 @@ from utilities.Storage import storage as s3
 from utilities.Token import token as tk
 from utilities.Converter import converter as cvt
 from utilities.Bearer import bearer as oa
-from utilities.Debug import Debug
 
 
 router = APIRouter()
