@@ -194,7 +194,7 @@ class _Profile_PageState extends State<Profile_Page> {
                             height: 100,
                             width: 100,
                             child: profile_image == null
-                                ? Image.network('$MINIO_PUBLIC/100/assets/1riel.png') //
+                                ? Image.network('$MINIO_PUBLIC/100/assets/logo.png') //
                                 : Image.network('$MINIO_PUBLIC/100/$profile_image'), //
                           ),
                           if (access_token != null)

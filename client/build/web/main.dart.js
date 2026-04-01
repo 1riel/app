@@ -43529,7 +43529,7 @@ h=A.c([A.bj(h==null?A.z0(u.n,k,k):A.z0("https://sss.1riel.com/public/200/"+h,k,k
 if(l.f!=null)h.push(A.eG(k,k,A.bE(B.nR,B.bg,k),k,k,new A.apq(l,a),k,k,k))
 h=A.jS(B.lY,h,B.E,B.bD,k)
 s=l.as
-s=A.c([A.bj(s==null?A.z0("https://sss.1riel.com/public/100/assets/1riel.png",k,k):A.z0("https://sss.1riel.com/public/100/"+s,k,k),100,100)],j)
+s=A.c([A.bj(s==null?A.z0("https://sss.1riel.com/public/100/assets/logo.png",k,k):A.z0("https://sss.1riel.com/public/100/"+s,k,k),100,100)],j)
 if(l.f!=null)s.push(A.eG(k,k,A.bE(B.nR,B.bg,k),k,k,new A.apr(l,a),k,k,k))
 h=A.c([A.jS(B.e3,A.c([h,A.jS(B.lY,s,B.E,B.bD,k)],j),B.E,B.bD,k)],j)
 if(l.f==null)B.b.S(h,A.c([A.bj(k,8,k),A.ds(A.c([A.jE(A.aM("Sign In",k,k,k,k,k,k),new A.aps(l,a)),A.jE(A.aM("Sign Up",k,k,k,k,k,k),new A.apw(l,a)),A.jE(A.aM("Reset",k,k,k,k,k,k),new A.apx(l,a))],j),B.z,B.eT,B.H,0)],j))
