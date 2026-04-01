@@ -1,9 +1,6 @@
 FROM nginx:stable-alpine
 
-# Remove default nginx website
-RUN rm -rf /usr/share/nginx/html/*
-
-# remove previous build files
+# remove default nginx website
 RUN rm -rf /usr/share/nginx/html/*
 
 # copy new build files
