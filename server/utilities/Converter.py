@@ -13,7 +13,7 @@ from server.Environment import *
 
 class Converter:
 
-    MAX_SIZE = 2000
+    MAX_SIZE = 10000
 
     def storage_to_thumbnail(self, input_path: str, input_height: int):
 

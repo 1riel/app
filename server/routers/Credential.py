@@ -331,7 +331,7 @@ def upload_image(key):
 
             # check image size max 10 MB
             content = await value.read()
-            if len(content) > 10 * 1024 * 1024 or len(content) <= 0:
+            if len(content) > MAX_IMAGE_UPLOAD_SIZE or len(content) <= 0:
                 return Response(status_code=status.HTTP_400_BAD_REQUEST)
 
             # prepare image name and path
