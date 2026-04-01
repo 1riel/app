@@ -1,3 +1,4 @@
+import 'package:app_1riel/Telegram_Auth.dart';
 import 'package:app_1riel/pages/product/stage/Product.dart';
 import 'package:app_1riel/pages/product/stage/Search.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +22,9 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: '1riel.com',
       theme: Theme_Data.get_theme(),
-      home: Main_Navigator_Page(index: 3), //
+      // home: Main_Navigator_Page(index: 3), //
       // home: Search_(), //
-      // home: Product_(), //
+      home: TelegramLoginWebView(),
       routes: Routes.routes,
       debugShowCheckedModeBanner: false,
     );
