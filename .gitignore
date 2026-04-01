@@ -13,7 +13,6 @@
 __pycache__/
 
 #
-update_client.py
-update_server.py
+update.py
 vscode.bat
 vscode.code-workspace
