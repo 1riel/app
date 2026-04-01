@@ -4,6 +4,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 import 'package:app_1riel/navigators/Main_Drawer.dart';
 import 'package:app_1riel/themes/Theme_Data.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 void main() {
   usePathUrlStrategy();
@@ -36,14 +37,36 @@ class _Store_PageState extends State<Store_Page> {
   @override
   void initState() {
     super.initState();
+    init();
     print('Store Page Loaded');
+  }
+
+  String VERSION = '0.0.0+0';
+  void init() async {
+    final info = await PackageInfo.fromPlatform();
+    VERSION = '${info.version}+${info.buildNumber}';
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Store"),
+        centerTitle: false,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Store'), //
+            Text(
+              VERSION,
+              style: const TextStyle(
+                fontSize: 12, //
+                color: Colors.blue,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
         actions: [
           IconButton(icon: const Icon(Icons.search), onPressed: () {}), //
           SizedBox(width: 10),

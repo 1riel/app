@@ -50,7 +50,7 @@ class _Product_State extends State<Product_> {
   @override
   void initState() {
     super.initState();
-    // init();
+    init();
   }
 
   bool is_edit = false;
@@ -62,21 +62,27 @@ class _Product_State extends State<Product_> {
 
   int limit = 1000;
 
-  void init() async {
-    await dio
-        .post(
-          '/product/read', //
-          data: FormData.fromMap({}),
-        )
-        .then((r) {
-          data_all = List<Map<String, dynamic>>.from(r.data);
-          // print(data_all[0]['images'][0]);
-          print('$MINIO_PUBLIC/${data_all[0]['image_1']}');
+  String VERSION = '0.0.0+0';
 
-          setState(() {});
-        })
-        .catchError((e) {});
+  void init() async {
+    final info = await PackageInfo.fromPlatform();
+    VERSION = '${info.version}+${info.buildNumber}';
     setState(() {});
+
+    // await dio
+    //     .post(
+    //       '/product/read', //
+    //       data: FormData.fromMap({}),
+    //     )
+    //     .then((r) {
+    //       data_all = List<Map<String, dynamic>>.from(r.data);
+    //       // print(data_all[0]['images'][0]);
+    //       print('$MINIO_PUBLIC/${data_all[0]['image_1']}');
+
+    //       setState(() {});
+    //     })
+    //     .catchError((e) {});
+    // setState(() {});
   }
 
   // ! make it faster
@@ -125,12 +131,20 @@ class _Product_State extends State<Product_> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         title: !is_search
             ? Column(
-                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Product'), //
+                  Text(
+                    VERSION,
+                    style: const TextStyle(
+                      fontSize: 12, //
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ],
               )
             : TextField(

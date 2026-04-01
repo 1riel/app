@@ -40,8 +40,6 @@ class Profile_Page extends StatefulWidget {
 }
 
 class _Profile_PageState extends State<Profile_Page> {
-  String VERSION = '0.0.0+0';
-
   FlutterSecureStorage secure_storage = FlutterSecureStorage();
   String? access_token;
 
@@ -70,6 +68,7 @@ class _Profile_PageState extends State<Profile_Page> {
     init();
   }
 
+  String VERSION = '0.0.0+0';
   void init() async {
     final info = await PackageInfo.fromPlatform();
     VERSION = '${info.version}+${info.buildNumber}';
@@ -116,6 +115,7 @@ class _Profile_PageState extends State<Profile_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
