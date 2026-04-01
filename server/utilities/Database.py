@@ -7,7 +7,7 @@ sys.path.append(os.getcwd())
 from pymongo import AsyncMongoClient
 from rich import print as pprint
 
-from Environment import *
+from server.Environment import *
 
 
 # NOTE: database and collection are automatically created.

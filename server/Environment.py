@@ -36,7 +36,7 @@ MINIO_URL = f"{MINIO_HOST}:{MINIO_PORT}"
 
 
 # ? Telegram Bot configuration
-BOT_TOKEN = os.getenv("BOT_TOKEN")  # Telegram bot token from environment variable
+BOT_TOKEN = os.getenv("BOT_TOKEN")  # Telegram bot token from server.Environment variable
 TELEGRAM_API_URL = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
 

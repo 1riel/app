@@ -5,7 +5,7 @@ FROM python:3.9-slim-bullseye
 WORKDIR /root
 
 # Copy the current directory contents into the container at /app
-COPY . /root
+COPY server /root/server
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --upgrade pip 
@@ -16,4 +16,4 @@ RUN pip install python-telegram-bot
 # EXPOSE 8000
 
 # Run python script when the container launches
-CMD ["python", "services/telegram/Application.py"]
+CMD ["python", "server/services/telegram/Application.py"]

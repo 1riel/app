@@ -11,9 +11,9 @@ from datetime import datetime
 from PIL import Image
 from io import BytesIO
 
-from Environment import *
-from utilities.Storage import storage as s3
-from utilities.Token import token as tk
+from server.Environment import *
+from server.utilities.Storage import storage as s3
+from server.utilities.Token import token as tk
 
 
 router = APIRouter()

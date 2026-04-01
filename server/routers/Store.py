@@ -12,9 +12,9 @@ from datetime import datetime
 import json
 from bson import ObjectId, json_util
 
-from Environment import *
-from utilities.Database import database as db
-from utilities.Bearer import bearer as oa
+from server.Environment import *
+from server.utilities.Database import database as db
+from server.utilities.Bearer import bearer as oa
 
 router = APIRouter()
 

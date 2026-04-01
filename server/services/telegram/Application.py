@@ -5,7 +5,7 @@ sys.path.append(os.getcwd())
 
 
 from telegram.ext import *
-from Environment import *
+from server.Environment import *
 
 
 class Telegram_Bot:

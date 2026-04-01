@@ -9,18 +9,18 @@ from fastapi import *
 from fastapi.responses import *
 from fastapi.middleware.cors import *
 
-from Environment import *
+from server.Environment import *
 
 
-from routers.Product import router as product
-from routers.Credential import router as credential
-from routers.Home import router as home
-from routers.Store import router as store
-from routers.CRUD import router as crud
+from server.routers.Product import router as product
+from server.routers.Credential import router as credential
+from server.routers.Home import router as home
+from server.routers.Store import router as store
+from server.routers.CRUD import router as crud
 
 
 # initialize database and storage
-import Initialization
+import server.Initialization
 
 
 app = FastAPI(title=TITLE, version="1.0.0", docs_url="/")

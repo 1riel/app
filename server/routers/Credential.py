@@ -17,13 +17,13 @@ from bson import ObjectId, json_util
 from datetime import datetime
 from PIL import Image
 
-from Environment import *
-from utilities.Security import hash as se
-from utilities.Database import database as db
-from utilities.Storage import storage as s3
-from utilities.Token import token as tk
-from utilities.Converter import converter as cvt
-from utilities.Bearer import bearer as oa
+from server.Environment import *
+from server.utilities.Security import hash as se
+from server.utilities.Database import database as db
+from server.utilities.Storage import storage as s3
+from server.utilities.Token import token as tk
+from server.utilities.Converter import converter as cvt
+from server.utilities.Bearer import bearer as oa
 
 
 router = APIRouter()

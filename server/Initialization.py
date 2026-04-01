@@ -4,13 +4,16 @@ import sys
 
 sys.path.append(os.getcwd())
 
+
 from glob import glob
 
-from utilities.Database import database as db
-from utilities.Storage import storage as s3
-from utilities.Converter import converter as cvt
-from Environment import *
 
+from server.utilities.Storage import storage as s3
+from server.utilities.Database import database as db
+from server.utilities.Converter import converter as cvt
+from server.Environment import *
+
+# TODO: create bucket with policy
 
 # create buckets
 if not s3.bucket_exists(MINIO_BUCKET_PUBLIC):
@@ -45,10 +48,14 @@ s3.set_bucket_policy(MINIO_BUCKET_PUBLIC, policy)
 
 # TODO: add sample data to storage
 
-
 # read all file
-files = glob("assets/*")
+files = glob(root_dir=os.getcwd() + "/server", pathname="assets/*")
+print(files)
 for f in files:
-    s3.fput_object(MINIO_BUCKET_PUBLIC, f.replace("\\", "/"), f.replace("\\", "/"))
-    cvt.file_to_thumbnail(f.replace("\\", "/"), 100)
-    cvt.file_to_thumbnail(f.replace("\\", "/"), 200)
+    f = f.replace("\\", "/")
+    s3.fput_object(MINIO_BUCKET_PUBLIC, f, os.getcwd() + "/server/" + f)
+    cvt.storage_to_thumbnail(f, 100)
+    cvt.storage_to_thumbnail(f, 200)
+
+
+# TODO: create collection with index

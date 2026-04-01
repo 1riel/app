@@ -5,7 +5,7 @@ sys.path.append(os.getcwd())
 
 from fastapi import *
 
-from Environment import *
+from server.Environment import *
 
 app = FastAPI(docs_url="/")
 

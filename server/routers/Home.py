@@ -6,7 +6,7 @@ sys.path.append(os.getcwd())
 
 from fastapi import *
 
-from Environment import *
+from server.Environment import *
 
 router = APIRouter()
 
