@@ -29,9 +29,7 @@ services:
       - minio_data:/data
     command: server /data --console-address ":9001"
     restart: unless-stopped
-  
-
-
+    
 
   telegram:
     # telegram bot
@@ -46,7 +44,6 @@ services:
     restart: unless-stopped
 
 
-  
   server:
     # backend server
     build:
@@ -60,23 +57,6 @@ services:
     volumes:
       - server_data:/root
     restart: unless-stopped
-
-  
-  
-  client:
-    # frontend client
-    build:
-      context: .
-      dockerfile: client/Dockerfile
-    container_name: client
-    env_file:
-      - .env
-    ports:
-      - "80:80"
-    # volumes:
-    #   - client_data:/usr/share/nginx/html
-    restart: unless-stopped
-
 
 
 volumes:

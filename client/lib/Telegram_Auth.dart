@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'dart:html' as html;
+import 'dart:html' as html; // for web only
 import 'dart:ui_web' as ui_web;
 
+const String telegramWidgetScriptUrl = 'https://telegram.org/js/telegram-widget.js?23';
 const String telegramBotUsername = 'muy_riel_otp_bot';
 const String telegramAuthUrl = 'https://www.1riel.com/auth/telegram';
-const String telegramWidgetScriptUrl = 'https://telegram.org/js/telegram-widget.js?23';
 
 class TelegramLoginScreen extends StatefulWidget {
   const TelegramLoginScreen({super.key});
