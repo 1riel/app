@@ -73,8 +73,8 @@ services:
       - .env
     ports:
       - "80:80"
-    volumes:
-      - client_data:/usr/share/nginx/html
+    # volumes:
+    #   - client_data:/usr/share/nginx/html
     restart: unless-stopped
 
 

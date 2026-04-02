@@ -47,7 +47,7 @@ class TelegramLoginWebView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Telegram Login")),
+      appBar: AppBar(title: Text("Telegram Login1028")),
       body: InAppWebView(
         initialData: InAppWebViewInitialData(data: htmlData),
         initialSettings: InAppWebViewSettings(
