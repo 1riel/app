@@ -1,12 +1,12 @@
-import 'package:app_1riel/telegram_auth_widget_stub.dart' if (dart.library.html) 'package:app_1riel/telegram_auth_widget_web.dart';
+import 'package:app_1riel/telegram_auth_widget_web.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-const String telegramWidgetScriptUrl = 'https://telegram.org/js/telegram-widget.js?23';
 const String telegramBotUsername = 'muy_riel_otp_bot';
 const String telegramAuthUrl = 'https://www.1riel.com/auth/telegram';
+const String telegramWidgetScriptUrl = 'https://telegram.org/js/telegram-widget.js?23';
 
 class TelegramLoginScreen extends StatefulWidget {
   const TelegramLoginScreen({super.key});
@@ -17,6 +17,14 @@ class TelegramLoginScreen extends StatefulWidget {
 
 class _TelegramLoginScreenState extends State<TelegramLoginScreen> {
   WebViewController? controller;
+
+  bool get supportsEmbeddedWebView {
+    if (kIsWeb) {
+      return false;
+    }
+
+    return defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS;
+  }
 
   String get telegramHtml =>
       '''
@@ -69,38 +77,42 @@ class _TelegramLoginScreenState extends State<TelegramLoginScreen> {
   void initState() {
     super.initState();
 
-    controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(Colors.transparent)
-      ..loadHtmlString(telegramHtml);
+    if (supportsEmbeddedWebView) {
+      controller = WebViewController()
+        ..setJavaScriptMode(JavaScriptMode.unrestricted)
+        ..setBackgroundColor(Colors.transparent)
+        ..loadHtmlString(telegramHtml);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('1126')),
+      appBar: AppBar(title: const Text('Telegram Login')),
       body: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 720),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Card(
-                  child: TelegramAuthWebWidget(
-                    botUsername: telegramBotUsername, //
-                    authUrl: telegramAuthUrl,
-                    scriptUrl: telegramWidgetScriptUrl,
-                    requestAccess: 'write',
-                    size: 'large',
-                    radius: '0',
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+        //
+        child: supportsEmbeddedWebView
+            ? WebViewWidget(controller: controller!)
+            : ElevatedButton(
+                onPressed: () async {
+                  final uri = Uri.parse(telegramAuthUrl);
+                  if (await canLaunchUrl(uri)) {
+                    await launchUrl(uri, mode: LaunchMode.externalApplication);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Could not launch Telegram login')));
+                  }
+                },
+                child: const Text('Login with Telegram'),
+              ),
+
+        // TelegramAuthWebWidget(
+        //   botUsername: telegramBotUsername, //
+        //   authUrl: telegramAuthUrl,
+        //   scriptUrl: telegramWidgetScriptUrl,
+        //   requestAccess: 'write',
+        //   size: 'large',
+        //   radius: '0',
+        // ),
       ),
     );
   }

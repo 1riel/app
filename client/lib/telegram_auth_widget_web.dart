@@ -3,7 +3,7 @@ import 'dart:ui_web' as ui_web;
 
 import 'package:flutter/widgets.dart';
 
-int _telegramAuthViewCounter = 0;
+// int _telegramAuthViewCounter = 0;
 
 class TelegramAuthWebWidget extends StatefulWidget {
   final String botUsername;
@@ -33,7 +33,7 @@ class _TelegramAuthWebWidgetState extends State<TelegramAuthWebWidget> {
   @override
   void initState() {
     super.initState();
-    viewType = 'telegram-auth-widget-${_telegramAuthViewCounter++}';
+    // viewType = 'telegram-auth-widget-${_telegramAuthViewCounter++}';
 
     ui_web.platformViewRegistry.registerViewFactory(viewType, (int viewId) {
       final host = html.DivElement()
