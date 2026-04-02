@@ -13,7 +13,15 @@ class TelegramAuthWebWidget extends StatefulWidget {
   final String size;
   final String radius;
 
-  const TelegramAuthWebWidget({super.key, required this.botUsername, required this.authUrl, required this.scriptUrl, required this.requestAccess, required this.size, required this.radius});
+  const TelegramAuthWebWidget({
+    super.key, //
+    required this.botUsername,
+    required this.authUrl,
+    required this.scriptUrl,
+    required this.requestAccess,
+    required this.size,
+    required this.radius,
+  });
 
   @override
   State<TelegramAuthWebWidget> createState() => _TelegramAuthWebWidgetState();

@@ -8,7 +8,15 @@ class TelegramAuthWebWidget extends StatelessWidget {
   final String size;
   final String radius;
 
-  const TelegramAuthWebWidget({super.key, required this.botUsername, required this.authUrl, required this.scriptUrl, required this.requestAccess, required this.size, required this.radius});
+  const TelegramAuthWebWidget({
+    super.key, //
+    required this.botUsername,
+    required this.authUrl,
+    required this.scriptUrl,
+    required this.requestAccess,
+    required this.size,
+    required this.radius,
+  });
 
   @override
   Widget build(BuildContext context) {
