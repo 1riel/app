@@ -24,7 +24,7 @@ class App extends StatelessWidget {
       theme: Theme_Data.get_theme(),
       // home: Main_Navigator_Page(index: 3), //
       // home: Search_(), //
-      home: TelegramLoginWebView(),
+      home: TelegramLoginScreen(),
       routes: Routes.routes,
       debugShowCheckedModeBanner: false,
     );
