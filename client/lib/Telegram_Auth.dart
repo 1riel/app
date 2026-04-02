@@ -1,8 +1,11 @@
-import 'package:app_1riel/telegram_auth_widget_web.dart';
+import 'dart:html' as html;
+import 'dart:ui_web' as ui_web;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import 'package:flutter/widgets.dart';
 
 const String telegramBotUsername = 'muy_riel_otp_bot';
 const String telegramAuthUrl = 'https://www.1riel.com/auth/telegram';
@@ -16,103 +19,43 @@ class TelegramLoginScreen extends StatefulWidget {
 }
 
 class _TelegramLoginScreenState extends State<TelegramLoginScreen> {
-  WebViewController? controller;
-
-  bool get supportsEmbeddedWebView {
-    if (kIsWeb) {
-      return false;
-    }
-
-    return defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS;
-  }
-
-  String get telegramHtml =>
-      '''
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Login with Telegram</title>
-		<style>
-			body {
-				margin: 0;
-				min-height: 100vh;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				background: #f5f7fb;
-				font-family: Arial, sans-serif;
-			}
-
-			.wrap {
-				text-align: center;
-			}
-
-			h2 {
-				margin: 0 0 20px;
-				color: #1f2937;
-				font-size: 24px;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="wrap">
-			<h2>Login with Telegram 1054</h2>
-			<script
-				async
-				src="$telegramWidgetScriptUrl"
-				data-telegram-login="$telegramBotUsername"
-				data-size="large"
-				data-radius="0"
-				data-auth-url="$telegramAuthUrl"
-				data-request-access="write"
-			></script>
-		</div>
-	</body>
-</html>
-''';
+  late final String viewType;
 
   @override
   void initState() {
     super.initState();
+    viewType = '';
 
-    if (supportsEmbeddedWebView) {
-      controller = WebViewController()
-        ..setJavaScriptMode(JavaScriptMode.unrestricted)
-        ..setBackgroundColor(Colors.transparent)
-        ..loadHtmlString(telegramHtml);
-    }
+    ui_web.platformViewRegistry.registerViewFactory(viewType, (int viewId) {
+      final host = html.DivElement()
+        ..style.width = '100%'
+        ..style.height = '100%'
+        ..style.display = 'flex'
+        ..style.alignItems = 'center'
+        ..style.justifyContent = 'center';
+
+      final script = html.ScriptElement()
+        ..async = true
+        ..src = telegramWidgetScriptUrl;
+
+      script.setAttribute('data-telegram-login', telegramBotUsername);
+      script.setAttribute('data-size', 'large');
+      script.setAttribute('data-radius', '0');
+      script.setAttribute('data-auth-url', telegramAuthUrl);
+      script.setAttribute('data-request-access', 'write');
+
+      host.append(script);
+      return host;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Telegram Login')),
+      appBar: AppBar(title: const Text('Telegram Login 1201')),
       body: Center(
         //
-        child: supportsEmbeddedWebView
-            ? WebViewWidget(controller: controller!)
-            : ElevatedButton(
-                onPressed: () async {
-                  final uri = Uri.parse(telegramAuthUrl);
-                  if (await canLaunchUrl(uri)) {
-                    await launchUrl(uri, mode: LaunchMode.externalApplication);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Could not launch Telegram login')));
-                  }
-                },
-                child: const Text('Login with Telegram'),
-              ),
-
-        // TelegramAuthWebWidget(
-        //   botUsername: telegramBotUsername, //
-        //   authUrl: telegramAuthUrl,
-        //   scriptUrl: telegramWidgetScriptUrl,
-        //   requestAccess: 'write',
-        //   size: 'large',
-        //   radius: '0',
-        // ),
+        child: HtmlElementView(viewType: viewType),
       ),
     );
   }
