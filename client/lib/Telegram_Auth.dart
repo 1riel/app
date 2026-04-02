@@ -19,13 +19,16 @@ class MyApp extends StatelessWidget {
 }
 
 class TelegramLoginWebView extends StatelessWidget {
+  //
+  //
+
   final String htmlData = """
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Login with Telegram</title>
+    <title>Login with Telegram 1042 </title>
     <style>
       body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
     </style>
@@ -37,7 +40,7 @@ class TelegramLoginWebView extends StatelessWidget {
       data-telegram-login="muy_riel_otp_bot"
       data-size="large"
       data-radius="0"
-      data-auth-url="https://www.1riel.com/auth/telegram"
+      data-auth-url="https://www.1riel.com"
       data-request-access="write"
     ></script>
   </body>
@@ -47,7 +50,7 @@ class TelegramLoginWebView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Telegram Login 1038")),
+      appBar: AppBar(title: Text("Telegram Login 1042")),
       body: InAppWebView(
         initialData: InAppWebViewInitialData(data: htmlData),
         initialSettings: InAppWebViewSettings(
